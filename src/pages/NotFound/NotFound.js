@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './NotFound.module.scss';
+import './NotFound.scss';
 
 const NotFound = props => {
   return (
-    <div className={styles.root}>
+    <div>
     </div>
   );
 };

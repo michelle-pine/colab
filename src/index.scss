@@ -1,13 +1,105 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+//variables and basic project standards
+
+//primary colors, for use in branding and tagging
+$primary-teal: #00a6a6;
+$primary-orange: #f08700;
+
+//secondary colors, only used for accents, icons, or tagging
+$light-blue: #D3EAF5;
+$yellow: #EFCA08;
+$light-orange: #F49F0A;
+$red: #A60A00;
+$purple: #0B0086;
+
+//essential colors, for text, backgrounds, and container fill
+$background: #E8F2F7;
+$border: #DDD;
+$white: #FFF;
+$dark-grey: #4A4A4A;
+$black: #000;
+
+//default transition
+@mixin transition {
+  transition: 0.3s all;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+//font importation
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+//font stack
+$font-stack: 'Roboto', sans-serif;
+$body-size: 14px;
+$h1-size: 36px;
+$h2-size: 28px;
+$h3-size: 24px;
+$h4-size: 18px;
+
+@mixin typography($size) {
+  font-family: 'Roboto', sans-serif;
+  font-size: $size;
+  line-height: $size * 1.618;
+}
+
+@mixin body-text {
+  @include typography($body-size);
+  font-weight: 400;
+  color: $black;
+}
+
+@mixin h1 {
+  @include typography($h1-size);
+  font-weight: 700;
+  color: $primary-teal;
+}
+
+@mixin h2 {
+  @include typography($h2-size);
+  font-weight: 700;
+  color: $primary-orange;
+}
+
+@mixin h3 {
+  @include typography($h3-size);
+  font-weight: 500;
+  color: $dark-grey;
+}
+
+@mixin h3 {
+  @include typography($h4-size);
+  font-weight: 500;
+  color: $black;
+}
+
+@mixin button {
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+@mixin go-button {
+  @include button;
+  color: $white;
+  background: $primary-teal;
+}
+
+@mixin back-button {
+  @include button;
+  color: $dark-grey;
+  background: $light-blue;
+}
+
+body {
+  @include body-text;
+  background: $background;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primary-teal;
+  @include transition;  
+}
+
+a:hover {
+  color: $primary-orange;
+  text-decoration: underline;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './AllProjects.module.scss';
+import './AllProjects.scss';
 
 const AllProjects = props => {
   return (
-    <div className={styles.root}>
+    <div className="all-projects">
     All Projects
     </div>
   );

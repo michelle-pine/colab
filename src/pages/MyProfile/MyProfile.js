@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './MyProfile.module.scss';
+import './MyProfile.scss';
 
 const MyProfile = props => {
   return (
-    <div className={styles.root}>
+    <div>
     MyProfile
     </div>
   );

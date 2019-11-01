@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
+import './Login.scss';
 
 const Login = props => {
   return (
-    <div className={styles.root}>
+    <div>
     Login
     </div>
   );

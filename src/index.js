@@ -8,6 +8,8 @@ import AllProjects from './pages/AllProjects/AllProjects';
 import CreateProject from './pages/CreateProject/CreateProject';
 import MyProfile from './pages/MyProfile/MyProfile';
 import Project from './pages/Project/Project';
+import NotFound from './pages/NotFound/NotFound';
+
 
 import * as serviceWorker from './serviceWorker';
 
@@ -20,6 +22,7 @@ const routing = (
       <Route path="/create-project" component={CreateProject} />
       <Route path="/edit-project" component={CreateProject} />
       <Route path="/projects/:id" component={Project} />
+      <Route component={NotFound} />
     </div>
   </Router>
 )

@@ -34,9 +34,9 @@ module.exports = plop => {
       {
         type: 'add',
         path:
-          'src/components/{{pascalCase name}}/{{pascalCase name}}.module.scss',
+          'src/components/{{pascalCase name}}/{{pascalCase name}}.scss',
         templateFile:
-          'plop-templates/Component/Component.module.scss.hbs',
+          'plop-templates/Component/Component.scss.hbs',
       },
       {
         type: 'add',
@@ -90,9 +90,9 @@ module.exports = plop => {
       {
         type: 'add',
         path:
-          'src/pages/{{pascalCase name}}/{{pascalCase name}}.module.scss',
+          'src/pages/{{pascalCase name}}/{{pascalCase name}}.scss',
         templateFile:
-          'plop-templates/Page/Page.module.scss.hbs',
+          'plop-templates/Page/Page.scss.hbs',
       },
       {
         type: 'add',

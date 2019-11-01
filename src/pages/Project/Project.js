@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Project.module.scss';
+import './Project.scss';
 
 const Project = props => {
   return (
-    <div className={styles.root}>
+    <div>
     </div>
   );
 };
