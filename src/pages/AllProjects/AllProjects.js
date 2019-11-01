@@ -5,6 +5,7 @@ import styles from './AllProjects.module.scss';
 const AllProjects = props => {
   return (
     <div className={styles.root}>
+    All Projects
     </div>
   );
 };

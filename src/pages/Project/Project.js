@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Project.module.css';
+import styles from './Project.module.scss';
 
 const Project = props => {
   return (
