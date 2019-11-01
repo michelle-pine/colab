@@ -18,6 +18,12 @@ $white: #FFF;
 $dark-grey: #4A4A4A;
 $black: #000;
 
+//responsive breakpont
+$breakpoint-default: 992px;
+
+//navbar height
+$navbar-height: 75px;
+
 //default transition
 @mixin transition {
   transition: 0.3s all;
@@ -70,9 +76,13 @@ $h4-size: 18px;
   color: $black;
 }
 
+@mixin shadow {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
 @mixin button {
   font-weight: 500;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  @include shadow;
 }
 
 @mixin go-button {
@@ -92,6 +102,7 @@ body {
   background: $background;
   margin: 0;
   padding: 0;
+  @include transition;
 }
 
 a {

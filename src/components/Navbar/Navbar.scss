@@ -3,14 +3,13 @@
 .navbar {
   background: $white;
   color: $primary-teal;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  @include shadow;
+  border-bottom: 1px solid $border;
 
-  .nav-brand {
-    .nav-logo-link {
-      @include h2;
-      font-weight: 500;
-      color: $primary-teal;
-    }
+  .navbar-brand {
+    @include h2;
+    font-weight: 500;
+    color: $primary-teal;
   }
 
   .navbar-toggler {
@@ -24,5 +23,11 @@
         color: $primary-orange;
       }
     }
+  }
+}
+
+@media only screen and (min-width : 992px){
+  .navbar {
+    max-height: $navbar-height;
   }
 }

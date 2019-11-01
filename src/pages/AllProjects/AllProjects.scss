@@ -1,2 +1,71 @@
 @import '../../index.scss';
 
+.all-projects {
+  display: flex;
+  flex-direction: row;
+
+
+  .sidebar {
+    width: 33.33%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 25px;
+
+    .sidebar-box {
+      height: auto;
+      width: 100%;
+      background: $white;
+      padding: 15px;
+      border: 1px solid $border;
+      @include shadow;
+
+      h1 {
+        @include h3;
+        color: $primary-orange;
+      }
+    }
+  }
+
+  .projects-container {
+    width: 66.33%;
+    padding: 25px;
+    max-height: calc(100vh - #{$navbar-height});
+    overflow-y: auto;
+
+    //delete this once project cards are created
+    .sample-card {
+      height: 2000px;
+      width: 100%;
+      border: 1px solid $border;
+      @include shadow;
+      background: $white;
+      padding: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-default) {
+  .all-projects {
+    flex-direction: column;
+    
+    .sidebar {
+      width: 100%;
+      padding: 15px;
+      padding-top: 25px;
+      .sidebar-box {
+        height: auto;
+        width: 100%;
+        background: $white;
+        padding: 15px;
+      }
+    }
+   
+    .projects-container {
+      width: 100%;
+      padding: 15px;
+      max-height: none;
+      overflow: auto;
+    }
+  }
+}

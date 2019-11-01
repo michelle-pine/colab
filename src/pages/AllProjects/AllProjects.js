@@ -5,7 +5,14 @@ import './AllProjects.scss';
 const AllProjects = props => {
   return (
     <div className="all-projects">
-    All Projects
+      <div className="sidebar">
+        <div className="sidebar-box">
+          <h1>All Projects</h1>
+        </div>
+      </div>
+      <div className="projects-container">
+        <div className="sample-card">DELETE THIS LATER</div>
+      </div>
     </div>
   );
 };
