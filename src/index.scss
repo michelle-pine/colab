@@ -83,12 +83,25 @@ $h4-size: 18px;
 @mixin button {
   font-weight: 500;
   @include shadow;
+  min-width: 100px;
+  padding: 10px;
+  border: 0;
+  border-radius: 100px;
 }
 
 @mixin go-button {
   @include button;
   color: $white;
   background: $primary-teal;
+}
+
+.go-button {
+  @include go-button;
+  @include transition;
+}
+
+.go-button:hover {
+  background: darken($primary-teal, 10);
 }
 
 @mixin back-button {
