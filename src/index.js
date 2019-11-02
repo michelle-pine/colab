@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 import './index.scss';
@@ -15,26 +16,31 @@ import Project from './pages/Project/Project';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 
+//stores
+import store from './store/index'
+
 //components
 import Navbar from './components/Navbar/Navbar';
 
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
-  <div className="page-wrapper">
-  <Router>
-    <Navbar />
-    <div>
-      <Route exact path="/" component={AllProjects} />
-      <Route path="/my-profile" component={MyProfile} />
-      <Route path="/create-project" component={CreateProject} />
-      <Route path="/edit-project" component={CreateProject} />
-      <Route path="/projects/:id" component={Project} />
-      <Route path="/login" component={Login} />
-      <Route component={NotFound} />
+  <Provider store={store}>
+    <div className="page-wrapper">
+      <Router>
+        <Navbar />
+        <div>
+          <Route exact path="/" component={AllProjects} />
+          <Route path="/my-profile" component={MyProfile} />
+          <Route path="/create-project" component={CreateProject} />
+          <Route path="/edit-project" component={CreateProject} />
+          <Route path="/projects/:id" component={Project} />
+          <Route path="/login" component={Login} />
+          <Route component={NotFound} />
+        </div>
+      </Router>
     </div>
-  </Router>
-  </div>
+  </Provider>
 )
 
 ReactDOM.render(routing, document.getElementById('root'))

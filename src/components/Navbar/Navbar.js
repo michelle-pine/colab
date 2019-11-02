@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Navbar.scss';
 import { Link, NavLink } from 'react-router-dom';
+import store from '../../store/index';
+import { connect } from 'react-redux';
+
 
 class Navbar extends React.Component {
   isActive(match, location) {
@@ -13,6 +16,9 @@ class Navbar extends React.Component {
   }
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return null;
+    }
     return (
       <nav className="navbar navbar-expand-lg">
         <Link className="navbar-brand" to="/">CoLab</Link>
@@ -41,12 +47,14 @@ class Navbar extends React.Component {
   }
 };
 
-Navbar.defaultProps = {
-
-};
+function navbarMapStateToProps(state, ownProps) {
+  return {
+      isLoggedIn: state.user.loggedIn,
+  };
+}
 
 Navbar.propTypes = {
-
+  isLoggedIn: PropTypes.bool
 };
 
-export default Navbar;
+export default connect(navbarMapStateToProps)(Navbar);

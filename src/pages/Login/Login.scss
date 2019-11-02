@@ -1,1 +1,52 @@
 @import '../../index.scss';
+
+.login {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .login-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 75vw;
+    @include shadow();
+    border: 1px solid #ddd;
+    background: $white;
+
+    form {
+      padding: 25px;
+      width: 100%;
+
+      .experience {
+        legend {
+          @include body-text;
+        }
+      }
+
+      button {
+        margin-top: 25px;
+      }
+    }
+
+    p {
+      padding: 0px 25px;
+      width: 100%;
+    }
+
+    h1 {
+      @include h2;
+      padding: 25px;
+      width: 100%;
+      font-weight: 500;
+      .logo {
+        @include h1;
+      }
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+  }
+}
