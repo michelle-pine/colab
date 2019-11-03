@@ -1,0 +1,21 @@
+@import "../../index.scss";
+
+.project-item-container {
+  height: 140px;
+  min-width: 200px;
+  @include shadow;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-right: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.project-item-container:hover {
+  cursor: pointer;
+}

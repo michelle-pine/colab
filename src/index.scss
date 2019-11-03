@@ -70,7 +70,7 @@ $h4-size: 18px;
   color: $dark-grey;
 }
 
-@mixin h3 {
+@mixin h4 {
   @include typography($h4-size);
   font-weight: 500;
   color: $black;
@@ -120,7 +120,7 @@ body {
 
 a {
   color: $primary-teal;
-  @include transition;  
+  @include transition;
 }
 
 a:hover {
