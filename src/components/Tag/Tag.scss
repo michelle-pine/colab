@@ -1,0 +1,32 @@
+@import '../../index.scss';
+
+.project-tag {
+  border-width: 1px;
+  border-style: solid;
+  font-weight: 500; 
+}
+
+.tag-yellow {
+  color: $yellow;
+  border-color: $yellow;
+}
+
+.tag-orange {
+  color: $primary-orange;
+  border-color: $primary-orange;
+}
+
+.tag-purple {
+  color: $purple;
+  border-color: $purple;
+}
+
+.tag-grey {
+  color: $dark-grey;
+  border-color: $dark-grey;
+}
+
+.tag-red {
+  color: $red;
+  border-color: $red;
+}
