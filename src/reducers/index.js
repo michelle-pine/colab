@@ -33,7 +33,11 @@ function rootReducer(state = getInitialState(), action) {
         user: action.payload,
       });
     case ADD_PROJECT:
-      return state;
+      const newProjects = Object.assign({}, projects);
+      newProjects[action.payload.id] = action.payload.project;
+      return Object.assign({}, state, {
+        projects: newProjects
+      });
     default:
       return state;
   }

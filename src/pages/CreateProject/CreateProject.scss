@@ -23,6 +23,23 @@
         @include h3;
         color: $primary-orange;
       }
+
+      .sidebar-steps {
+        display: flex;
+        flex-direction: column;
+        .nav-button {
+          text-align: left;
+          background: 0;
+          border: 0;
+          @include h4;
+        }
+        .nav-button.active {
+          color: $primary-teal;
+        }
+        .nav-button:disabled {
+          color: lighten(#4A4A4A, 50);
+        }
+      }
     }
   }
 
@@ -52,6 +69,10 @@
             display: flex;
             justify-content: space-between;
           }
+          select {
+            @include body-text;
+            color: rgb(170, 170, 170);
+          }
           .teammate-section {
             padding-bottom: 25px;
           }
@@ -59,6 +80,9 @@
             button {
               margin-right: 15px;
             }
+          }
+          .member-select {
+            padding: 10px;
           }
         }
       }
