@@ -19,7 +19,7 @@ class AllProjects extends React.Component {
     for (let i in projects) {
       let curProject = projectUtils.convertProject(projects[i]);
       renderedProjects.push(
-        <ProjectCard projectId={i} project={curProject} />
+        <ProjectCard key={i} projectId={i} project={curProject} />
       );
     }
     return renderedProjects;

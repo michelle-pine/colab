@@ -16,7 +16,7 @@ class ProjectCard extends React.Component {
     let renderedTags = [];
     for (let tag of tags) {
       renderedTags.push(
-        <Tag tag={tag} />
+        <Tag tag={tag} key={tag.id} />
       )
     }
     return renderedTags;

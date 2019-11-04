@@ -7,7 +7,9 @@ export const projectUtils = {
     let tags = [];
     let author = state.users[project.creatorId];
     for (let tag of project.tags) {
-      tags.push(allTags[tag]);
+      let tagObj = allTags[tag];
+      tagObj.id = tag;
+      tags.push(tagObj);
     }
     tags = tags.sort(function(a, b) {
       if (a.type < b.type) {
