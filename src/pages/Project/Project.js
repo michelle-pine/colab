@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Project.scss';
+import store from '../../store/index';
 
-const Project = props => {
-  return (
-    <div>
-    </div>
-  );
+
+class Project extends React.Component {
+
+  getProject() {
+    const { id } = this.props.match.params;
+    let projects = store.getState().projects;
+    return projects[id];
+  }
+
+  render() {
+    let project = this.getProject();
+    return (
+      <div>
+        {project.name}
+      </div>
+    );
+  }
 };
 
-Project.defaultProps = {
-
-};
-
-Project.propTypes = {
-
-};
 
 export default Project;

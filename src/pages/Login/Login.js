@@ -32,7 +32,6 @@ class Login extends React.Component {
     }
     for (var item in user) {
       cookieUtils.bakeCookie(item, user[item]);
-      console.log(document.cookie)
     }
     store.dispatch(registerUser(user));
     this.props.history.push("/");

@@ -1,7 +1,7 @@
 import React from 'react';
-import NotFound from './NotFound';
+import Tag from './Tag';
 
-describe('NotFound', () => {
+describe('Tag', () => {
    it('renders without error', () => {
 
    });
