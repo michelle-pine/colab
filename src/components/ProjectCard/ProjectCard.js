@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import './ProjectCard.scss';
 import Tag from '../Tag/Tag';
 import { Link } from 'react-router-dom';
+import TimeAgo from 'javascript-time-ago'
+// Load locale-specific relative date/time formatting rules.
+import en from 'javascript-time-ago/locale/en'
 
+// Add locale-specific relative date/time formatting rules.
+TimeAgo.addLocale(en)
 
 class ProjectCard extends React.Component {
   renderTags() {
@@ -18,6 +23,8 @@ class ProjectCard extends React.Component {
   }
   
   render() {
+    const timeAgo = new TimeAgo('en-US')
+
     return (
       <div className="project-card">
         <div className="project-card-top-info">
@@ -32,6 +39,7 @@ class ProjectCard extends React.Component {
         </div>
         <div className="project-card-author">
           by {this.props.project.author.firstname} {this.props.project.author.lastname}
+          <span className="project-card-timestamp">{timeAgo.format(this.props.project.createdAt)}</span>
         </div>
         <div className="project-card-description">
           {this.props.project.description}

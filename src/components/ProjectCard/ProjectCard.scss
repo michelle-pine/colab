@@ -30,6 +30,12 @@
   .project-card-author {
     padding: 15px 25px;
     color: $dark-grey;
+
+    .project-card-timestamp {
+      margin: 5px;
+      font-style: italic;
+      font-size: 12px;
+    }
   }
 
   .project-card-description {
