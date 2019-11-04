@@ -34,9 +34,8 @@ const routing = (
           <Route path="/my-profile" component={MyProfile} />
           <Route path="/create-project" component={CreateProject} />
           <Route path="/edit-project" component={CreateProject} />
-          <Route path="/projects/:id" component={Project} />
+          <Route exact path="/projects/:id" component={Project} />
           <Route path="/login" component={Login} />
-          <Route component={NotFound} />
         </div>
       </Router>
     </div>

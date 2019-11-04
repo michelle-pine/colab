@@ -1,9 +1,14 @@
 @import '../../index.scss';
 
 .project-tag {
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   font-weight: 500; 
+  display: inline-block;
+  margin: 5px; 
+  border-radius: 5px;
+  padding: 5px;
+  @include shadow;
 }
 
 .tag-yellow {

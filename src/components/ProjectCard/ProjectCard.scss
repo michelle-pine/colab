@@ -1,0 +1,44 @@
+@import '../../index.scss';
+
+.project-card {
+  background: $white;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  @include shadow;
+  border: 1px solid $border;
+
+  .project-card-top-info {
+    padding: 15px 25px;
+    border-bottom: 1px solid $border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .project-card-name {
+      @include h3;
+      text-decoration: none;
+    }
+    .project-card-button {
+      @include go-button;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+  }
+ 
+
+  .project-card-author {
+    padding: 15px 25px;
+    color: $dark-grey;
+  }
+
+  .project-card-description {
+    padding: 0px 25px 15px 25px;
+    color: $black;
+  }
+
+  .project-card-tags {
+    border-top: 1px solid $border;
+    padding: 15px 25px;
+  }
+}

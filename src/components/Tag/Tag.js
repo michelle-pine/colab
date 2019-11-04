@@ -4,7 +4,7 @@ import './Tag.scss';
 
 class Tag extends React.Component {
   getColor() {
-    switch (this.props.project.type) {
+    switch (this.props.tag.type) {
       case "Positions":
         return "tag-yellow";
       case "Languages":
@@ -23,14 +23,14 @@ class Tag extends React.Component {
   render () {
     return (
       <div className={`project-tag ${this.getColor()}`}>
-        {this.project.name}
+        {this.props.tag.name}
       </div>
     );
   }
 };
 
 Tag.propTypes = {
-  project: PropTypes.object,
+  tag: PropTypes.object,
 };
 
 export default Tag;

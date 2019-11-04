@@ -1,6 +1,5 @@
 import Cookies from 'universal-cookie';
 
-
 export const cookieUtils = {
   bakeCookie: function(name, value) {
     const cookies = new Cookies();

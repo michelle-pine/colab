@@ -1,7 +1,7 @@
 import React from 'react';
-import NotFound from './NotFound';
+import ProjectCard from './ProjectCard';
 
-describe('NotFound', () => {
+describe('ProjectCard', () => {
    it('renders without error', () => {
 
    });
