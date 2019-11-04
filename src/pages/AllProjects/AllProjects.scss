@@ -32,16 +32,6 @@
     padding: 25px;
     max-height: calc(100vh - #{$navbar-height});
     overflow-y: auto;
-
-    //delete this once project cards are created
-    .sample-card {
-      height: 2000px;
-      width: 100%;
-      border: 1px solid $border;
-      @include shadow;
-      background: $white;
-      padding: 15px;
-    }
   }
 }
 

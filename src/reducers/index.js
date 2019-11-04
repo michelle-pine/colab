@@ -1,5 +1,7 @@
 
 import { REGISTER_USER } from "../constants/action-types";
+import { ADD_PROJECT } from "../constants/action-types";
+
 import { cookieUtils } from "../utils/cookie_utils"
 import { users } from "../constants/users";
 import { projects } from "../constants/projects";
@@ -25,12 +27,16 @@ function getInitialState() {
 }
 
 function rootReducer(state = getInitialState(), action) {
-  if (action.type === REGISTER_USER) {
-    return Object.assign({}, state, {
-      user: action.payload,
-    });
+  switch (action.type) {
+    case REGISTER_USER:
+      return Object.assign({}, state, {
+        user: action.payload,
+      });
+    case ADD_PROJECT:
+      return state;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default rootReducer;
