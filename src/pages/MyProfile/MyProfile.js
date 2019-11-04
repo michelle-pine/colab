@@ -20,7 +20,6 @@ class MyProfile extends React.Component {
       ],
       pastProjects: [],
       presentProjects: [],
-      profileImageSrc: null,
       links: [
         "https://github.com/michelle-pine/colab",
         "https://github.com/michelle-pine/colab"
@@ -33,11 +32,6 @@ class MyProfile extends React.Component {
     };
   }
 
-  fileUploadedHandler = event => {
-    console.log(event.target.files[0].name);
-    //update the profile photo
-    //this.setState({profileImageSrc: event.target.files[0].name })
-  };
 
   handleEditDescriptionClicked = () => {
     this.setState({ editingDescription: !this.state.editingDescription });
@@ -65,7 +59,6 @@ class MyProfile extends React.Component {
       currentProjects,
       pastProjects,
       presentProjects,
-      profileImageSrc,
       links,
       firstName,
       lastName,
@@ -78,29 +71,6 @@ class MyProfile extends React.Component {
 
     return (
       <div id="profile-page">
-        {/*  profile image */}
-
-        {profileImageSrc ? (
-          <img
-            src={profileImageSrc}
-            id="profile-image"
-            alt="User profile"
-          ></img>
-        ) : null}
-        <div
-          onClick={this.handleEditLinksClicked}
-          className={editable ? "show" : "hide"}
-          id="image-upload-container"
-        >
-          <label htmlFor="file-input">
-            <span className="edit-button">Upload Photo</span>
-          </label>
-          <input
-            id="file-input"
-            type="file"
-            onChange={this.fileUploadedHandler}
-          />
-        </div>
 
         {/* First and last Name */}
         <h4>
