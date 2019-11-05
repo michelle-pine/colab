@@ -171,7 +171,7 @@ class AllProjects extends React.Component {
           </div>
         </div>
         <div className="projects-container">
-          {this.renderProjects()};
+          {this.renderProjects()}
         </div>
       </div>
     );
