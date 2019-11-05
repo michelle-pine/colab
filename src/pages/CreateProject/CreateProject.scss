@@ -23,6 +23,24 @@
         @include h3;
         color: $primary-orange;
       }
+
+      .sidebar-steps {
+        display: flex;
+        flex-direction: column;
+        .nav-button {
+          text-align: left;
+          background: 0;
+          border: 0;
+          @include h4;
+          color: $dark-grey;
+        }
+        .nav-button.active {
+          color: $primary-teal;
+        }
+        .nav-button:disabled {
+          color: lighten(#4A4A4A, 50);
+        }
+      }
     }
   }
 
@@ -32,14 +50,42 @@
     max-height: calc(100vh - #{$navbar-height});
     overflow-y: auto;
 
-    //delete this once project cards are created
-    .sample-card {
-      height: 2000px;
-      width: 100%;
-      border: 1px solid $border;
-      @include shadow;
+    .create-project-form-wrapper {
       background: $white;
-      padding: 15px;
+      @include shadow;
+      .create-project-form {
+        display: flex;
+        flex-direction: column;
+        h2 {
+          @include h3;
+          padding: 25px;
+          border: 1px solid $border;
+        }
+        h3 {
+          @include h4;
+        }
+        .create-project-inputs {
+          padding: 25px;
+          .form-button-group {
+            display: flex;
+            justify-content: space-between;
+          }
+          select {
+            @include body-text;
+          }
+          .teammate-section {
+            padding-bottom: 25px;
+          }
+          .grouped-buttons {
+            button {
+              margin-right: 15px;
+            }
+          }
+          .member-select {
+            padding: 10px;
+          }
+        }
+      }
     }
   }
 }

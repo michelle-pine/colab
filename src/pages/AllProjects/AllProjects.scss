@@ -24,6 +24,65 @@
         @include h3;
         color: $primary-orange;
       }
+      h2 {
+        @include h4;
+        i {
+          color: $dark-grey;
+        }
+      }
+      .filter {
+        padding: 10px 0px;
+        .dropdown-heading {
+          border-width: 2px!important;
+          font-weight: 500;
+        }
+
+        &.positions {
+          .dropdown-heading {
+            &-value {
+              color: $yellow!important;
+            }
+            border-color: $yellow!important;
+          }          
+        }
+
+        &.languages {
+          .dropdown-heading {
+            &-value {
+              color: $primary-orange!important;
+            }
+            border-color: $primary-orange!important;
+          }          
+        }
+
+        &.technologies {
+          .dropdown-heading {
+            &-value {
+              color: $purple!important;
+            }
+            border-color: $purple!important;
+          }          
+        }
+
+        &.topics {
+          .dropdown-heading {
+            &-value {
+              color: $red!important;
+            }
+            border-color: $red!important;
+          }          
+        }
+
+        &.difficulty {
+          .dropdown-heading {
+            &-value {
+              color: $dark-grey!important;
+            }
+            border-color: $dark-grey!important;
+          }          
+        }
+        
+      }
     }
   }
 
@@ -32,16 +91,6 @@
     padding: 25px;
     max-height: calc(100vh - #{$navbar-height});
     overflow-y: auto;
-
-    //delete this once project cards are created
-    .sample-card {
-      height: 2000px;
-      width: 100%;
-      border: 1px solid $border;
-      @include shadow;
-      background: $white;
-      padding: 15px;
-    }
   }
 }
 
