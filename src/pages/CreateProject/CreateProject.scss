@@ -32,6 +32,7 @@
           background: 0;
           border: 0;
           @include h4;
+          color: $dark-grey;
         }
         .nav-button.active {
           color: $primary-teal;
@@ -71,7 +72,6 @@
           }
           select {
             @include body-text;
-            color: rgb(170, 170, 170);
           }
           .teammate-section {
             padding-bottom: 25px;
