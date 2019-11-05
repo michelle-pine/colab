@@ -6,14 +6,22 @@ import { projectUtils } from "../../utils/project_utils";
 import Tag from "../../components/Tag/Tag";
 import { Link } from "react-router-dom";
 
+import { applyForProject, cancelApplication } from "../../actions/index";
+const CANCEL_APPLICATION = "Cancel Application";
+const APPLY = "Apply";
+const BUSINESS = "business";
+const FRONT_END = "front-end";
+const BACK_END = "back-end";
+const DESIGN = "design";
+
 class Project extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      businessButtonText: "Apply",
-      designButtonText: "Apply",
-      frontendButtonText: "Apply",
-      backendButtonText: "Apply"
+      businessButtonText: "",
+      designButtonText: "",
+      frontendButtonText: "",
+      backendButtonText: ""
     };
   }
   getProject() {
@@ -28,40 +36,80 @@ class Project extends React.Component {
 
   handleApplyBackendClicked = () => {
     let newText =
-      this.state.backendButtonText === "Apply" ? "Cancel Application" : "Apply";
+      this.state.backendButtonText === APPLY ? CANCEL_APPLICATION : APPLY;
     this.setState({ backendButtonText: newText });
+    this.updateUserOnApply(BACK_END, this.state.backendButtonText);
   };
 
   handleApplyFrontendClicked = () => {
     let newText =
-      this.state.frontendButtonText === "Apply"
-        ? "Cancel Application"
-        : "Apply";
+      this.state.frontendButtonText === APPLY ? CANCEL_APPLICATION : APPLY;
     this.setState({ frontendButtonText: newText });
+    this.updateUserOnApply(FRONT_END, this.state.frontendButtonText);
   };
 
   handleApplyDesignClicked = () => {
     let newText =
-      this.state.designButtonText === "Apply" ? "Cancel Application" : "Apply";
+      this.state.designButtonText === APPLY ? CANCEL_APPLICATION : APPLY;
     this.setState({ designButtonText: newText });
+    this.updateUserOnApply(DESIGN, this.state.designButtonText);
   };
 
   handleApplyBusinessClicked = () => {
     let newText =
-      this.state.businessButtonText === "Apply"
-        ? "Cancel Application"
-        : "Apply";
+      this.state.businessButtonText === APPLY ? CANCEL_APPLICATION : APPLY;
     this.setState({ businessButtonText: newText });
+    this.updateUserOnApply(BUSINESS, this.state.businessButtonText);
   };
+
+  updateUserOnApply(position, applied) {
+    let hasApplied = applied === APPLY;
+    let { id } = this.props.match.params;
+    const payload = { projectId: id, position: position };
+    if (hasApplied) {
+      store.dispatch(applyForProject(payload));
+    } else {
+      store.dispatch(cancelApplication(payload));
+    }
+  }
+
+  componentDidMount() {
+    let pendingProjects = store.getState().user.myProjects.pending;
+    this.setState({
+      businessButtonText: this.searchForApplication(BUSINESS, pendingProjects)
+        ? CANCEL_APPLICATION
+        : APPLY,
+      designButtonText: this.searchForApplication(DESIGN, pendingProjects)
+        ? CANCEL_APPLICATION
+        : APPLY,
+      frontendButtonText: this.searchForApplication(FRONT_END, pendingProjects)
+        ? CANCEL_APPLICATION
+        : APPLY,
+      backendButtonText: this.searchForApplication(BACK_END, pendingProjects)
+        ? CANCEL_APPLICATION
+        : APPLY
+    });
+  }
+
+  searchForApplication(position, projects) {
+    let { id } = this.props.match.params;
+    let applied = false;
+    projects.forEach(application => {
+      if (id === application.projectId && position === application.position) {
+        applied = true;
+        return;
+      }
+    });
+    return applied;
+  }
 
   render() {
     let project = this.getProject();
     let convertedProject = projectUtils.convertProject(project);
-    let businessMembers = convertedProject.projectMembersExpanded["business"];
-    let designMembers = convertedProject.projectMembersExpanded["design"];
-    let frontendMembers = convertedProject.projectMembersExpanded["front-end"];
-    let backendMembers = convertedProject.projectMembersExpanded["back-end"];
-
+    let businessMembers = convertedProject.projectMembersExpanded[BUSINESS];
+    let designMembers = convertedProject.projectMembersExpanded[DESIGN];
+    let frontendMembers = convertedProject.projectMembersExpanded[FRONT_END];
+    let backendMembers = convertedProject.projectMembersExpanded[BACK_END];
     let tagsCategories = [];
 
     convertedProject.tagsRich.forEach(tag => {
@@ -107,7 +155,7 @@ class Project extends React.Component {
               {convertedProject.tags.indexOf(4) >= 0 ? (
                 <button
                   className={
-                    this.state.businessButtonText === "Apply"
+                    this.state.businessButtonText === APPLY
                       ? "go-button"
                       : "back-button"
                   }
@@ -133,7 +181,7 @@ class Project extends React.Component {
               {convertedProject.tags.indexOf(2) >= 0 ? (
                 <button
                   className={
-                    this.state.backendButtonText === "Apply"
+                    this.state.backendButtonText === APPLY
                       ? "go-button"
                       : "back-button"
                   }
@@ -160,7 +208,7 @@ class Project extends React.Component {
                 <button
                   onClick={this.handleApplyFrontendClicked}
                   className={
-                    this.state.frontendButtonText === "Apply"
+                    this.state.frontendButtonText === APPLY
                       ? "go-button"
                       : "back-button"
                   }
@@ -186,7 +234,7 @@ class Project extends React.Component {
                 <button
                   onClick={this.handleApplyDesignClicked}
                   className={
-                    this.state.designButtonText === "Apply"
+                    this.state.designButtonText === APPLY
                       ? "go-button"
                       : "back-button"
                   }
