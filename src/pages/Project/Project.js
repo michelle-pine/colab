@@ -57,12 +57,11 @@ class Project extends React.Component {
   render() {
     let project = this.getProject();
     let convertedProject = projectUtils.convertProject(project);
-    let businessMembers = convertedProject.projectMembersExpanded.business;
-    let designMembers = convertedProject.projectMembersExpanded.design;
-    let frontendMembers = convertedProject.projectMembersExpanded.frontend;
-    let backendMembers = convertedProject.projectMembersExpanded.backend;
+    let businessMembers = convertedProject.projectMembersExpanded["business"];
+    let designMembers = convertedProject.projectMembersExpanded["design"];
+    let frontendMembers = convertedProject.projectMembersExpanded["front-end"];
+    let backendMembers = convertedProject.projectMembersExpanded["back-end"];
 
-    console.log(convertedProject);
     let tagsCategories = [];
 
     convertedProject.tagsRich.forEach(tag => {
@@ -100,10 +99,8 @@ class Project extends React.Component {
               <h4>Business</h4>
               {businessMembers.map(member => {
                 return (
-                  <p>
-                    <a href="" key={member.id}>
-                      {member.firstname} {member.lastname}
-                    </a>
+                  <p key={member.id}>
+                    {member.firstname} {member.lastname}
                   </p>
                 );
               })}
@@ -128,10 +125,8 @@ class Project extends React.Component {
               <h4>Back-end</h4>
               {backendMembers.map(member => {
                 return (
-                  <p>
-                    <a key={member.id} href="">
-                      {member.firstname} {member.lastname}
-                    </a>
+                  <p key={member.id}>
+                    {member.firstname} {member.lastname}
                   </p>
                 );
               })}
@@ -156,10 +151,8 @@ class Project extends React.Component {
               <h4>Front-end</h4>
               {frontendMembers.map(member => {
                 return (
-                  <p>
-                    <a key={member.id} href="">
-                      {member.firstname} {member.lastname}
-                    </a>
+                  <p key={member.id}>
+                    {member.firstname} {member.lastname}
                   </p>
                 );
               })}
@@ -184,10 +177,8 @@ class Project extends React.Component {
               <h4>Design</h4>
               {designMembers.map(member => {
                 return (
-                  <p>
-                    <a key={member.id} href="">
-                      {member.firstname} {member.lastname}
-                    </a>
+                  <p key={member.id}>
+                    {member.firstname} {member.lastname}
                   </p>
                 );
               })}

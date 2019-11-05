@@ -22,30 +22,30 @@ export const projectUtils = {
     });
 
     let backenders = [];
-    for (let memberId of project.projectMembers.backend) {
+    for (let memberId of project.projectMembers["back-end"]) {
       backenders.push(state.users[memberId]);
     }
 
     let frontenders = [];
-    for (let memberId of project.projectMembers.frontend) {
+    for (let memberId of project.projectMembers["front-end"]) {
       frontenders.push(state.users[memberId]);
     }
 
     let businessMen = [];
-    for (let memberId of project.projectMembers.business) {
+    for (let memberId of project.projectMembers["business"]) {
       businessMen.push(state.users[memberId]);
     }
 
     let designers = [];
-    for (let memberId of project.projectMembers.design) {
+    for (let memberId of project.projectMembers["design"]) {
       designers.push(state.users[memberId]);
     }
 
     projectMembers = {
-      backend: backenders,
-      frontend: frontenders,
-      design: designers,
-      business: businessMen
+      "back-end": backenders,
+      "front-end": frontenders,
+      "design": designers,
+      "business": businessMen
     };
 
     let projectEdited = Object.assign({}, project);

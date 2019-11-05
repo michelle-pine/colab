@@ -9,7 +9,7 @@ export const projects = {
     createdAt: Date.now(),
     githubLink: "",
     prototypeLink: "",
-    projectMembers: { backend: [1], business: [], design: [], frontend: [] }
+    projectMembers: {"back-end": [1], "business": [], "design": [], "front-end": [] }
   },
   2: {
     name: "Food Ordering App",
@@ -21,7 +21,7 @@ export const projects = {
     createdAt: Date.now() - 2 * 60 * 60 * 1000,
     githubLink: "",
     prototypeLink: "",
-    projectMembers: { backend: [], business: [], design: [], frontend: [] }
+    projectMembers: { "back-end": [], "business": [], "design": [], "front-end": [] }
   },
   3: {
     name: "Language Analyzer",
@@ -33,7 +33,7 @@ export const projects = {
     createdAt: Date.now() - 24 * 60 * 60 * 1000,
     githubLink: "",
     prototypeLink: "",
-    projectMembers: { backend: [], business: [], design: [], frontend: [] }
+    projectMembers: { "back-end": [], "business": [], "design": [], "front-end": [] }
   },
   4: {
     name: "CoLab",
@@ -46,10 +46,10 @@ export const projects = {
     githubLink: "https://github.com/michelle-pine/colab",
     prototypeLink: "https://www.behance.net/",
     projectMembers: {
-      backend: [1, 2],
-      business: [],
-      design: [4],
-      frontend: [3]
+      "back-end": [1, 2],
+      "business": [],
+      "design": [4],
+      "front-end": [3]
     }
   }
 };
