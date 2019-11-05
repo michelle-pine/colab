@@ -34,6 +34,7 @@ class AllProjects extends React.Component {
         <div className="sidebar">
           <div className="sidebar-box">
             <h1>All Projects</h1>
+            <h2><i class="fa fa-filter"></i>&nbsp; Filters</h2>
           </div>
         </div>
         <div className="projects-container">

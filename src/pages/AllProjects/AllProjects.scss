@@ -24,6 +24,9 @@
         @include h3;
         color: $primary-orange;
       }
+      h2 {
+        @include h4;
+      }
     }
   }
 
