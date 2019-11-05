@@ -7,7 +7,7 @@ export const projects = {
       1, 7, 16, 38, 42, 69, 57, 74, 77
     ],
     state: "pending",
-    createdAt: Date.now(),
+    createdAt: Date.now()
   },
   2: {
     name: "Food Ordering App",
@@ -24,7 +24,7 @@ export const projects = {
     creatorId: 3,
     description: "A desktop software which analyzes the speech patterns of inputted text.",
     tags: [
-      6, 79, 78, 2, 66, 61, 58 
+      6, 79, 78, 2, 66, 61, 58
     ],
     state: "pending",
     createdAt: Date.now() - 24 * 60 * 60 * 1000,
