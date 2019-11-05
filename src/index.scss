@@ -110,6 +110,16 @@ $h4-size: 18px;
   background: $light-blue;
 }
 
+
+.back-button {
+  @include back-button;
+  @include transition;
+}
+
+.back-button:hover {
+  background: darken($light-blue, 10);
+}
+
 body {
   @include body-text;
   background: $background;
