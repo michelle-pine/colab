@@ -17,11 +17,16 @@
     .project-card-name {
       @include h3;
       text-decoration: none;
+      min-width: 0;
     }
-    .project-card-button {
-      @include go-button;
-      text-decoration: none;
-      text-transform: uppercase;
+
+    .project-card-button-container {
+      min-width: 100px;
+      .project-card-button {
+        @include go-button;
+        text-decoration: none;
+        text-transform: uppercase;
+      }  
     }
 
   }

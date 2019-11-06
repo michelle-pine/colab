@@ -70,3 +70,10 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint-default) {
+  .login-box {
+    width: 100vw!important;
+    min-height: 100vh!important;
+  }
+}

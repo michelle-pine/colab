@@ -33,8 +33,10 @@ class AllProjects extends React.Component {
       positions: tags.filter((tag) => tag.type === "Positions"),
       topics: tags.filter((tag) => tag.type === "Topics"),
       difficulty: tags.filter((tag) => tag.type === "Difficulty"),
+      searchValue: "",
     }
     this.clearFilters = this.clearFilters.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   commonElements(arr1, arr2) {
@@ -46,17 +48,36 @@ class AllProjects extends React.Component {
     return true;
   }
 
+  onSearch(e) {
+    let val = e.target.value;
+    this.setState({searchValue: val});
+  }
+
+  matchesSearch(name, description, author) {
+    let nameUpper = name.toUpperCase();
+    let descriptionUpper = description.toUpperCase();
+    let authorUpper = author.toUpperCase();
+    let string2 = this.state.searchValue.toUpperCase();
+    let regex = new RegExp( string2, 'g' );
+    let matchesName = nameUpper.match(regex);
+    let matchesDescription = descriptionUpper.match(regex);
+    let matchesAuthor = authorUpper.match(regex);
+    return matchesName || matchesDescription || matchesAuthor;
+  }
+
   renderProjects() {
     let projects = this.state.allProjects;
     let selectedTags = this.state.selectedPositions.concat(this.state.selectedLanguages).concat(this.state.selectedTechnologies).concat(this.state.selectedTopics).concat(this.state.selectedDifficulty);
     selectedTags = selectedTags.map((tag) => parseInt(tag));
     let renderedProjects = [];
     for (let i in projects) {
-      if (selectedTags.length === 0 || this.commonElements(selectedTags, projects[i].tags)) {
+      if (selectedTags.length === 0 || this.commonElements(selectedTags, projects[i].tags) ) {
         let curProject = projectUtils.convertProject(projects[i]);
-        renderedProjects.push(
-          <ProjectCard key={i} projectId={i} project={curProject} />
-        );
+        if (this.state.searchValue === "" || this.matchesSearch(curProject.name, curProject.description, curProject.author.firstname + curProject.author.lastname)) {
+          renderedProjects.push(
+            <ProjectCard key={i} projectId={i} project={curProject} />
+          );
+        }
       }
     }
     return renderedProjects;
@@ -82,6 +103,11 @@ class AllProjects extends React.Component {
         <div className="sidebar">
           <div className="sidebar-box">
             <h1>All Projects</h1>
+            <div className="form-group search">
+              <label htmlFor="search-box" className="sr-only">Search</label>
+              <i className="search-icon fa fa-search"></i>
+              <input onChange={this.onSearch} id="search-box" className="form-control" placeholder="Search Projects..."/>
+            </div>
             <h2><i className="fa fa-filter"></i>&nbsp; Project Filters <HelpDialog message="Use these filters to narrow down results." /></h2>
             <div className="filter positions">
               <div>Positions <HelpDialog message="The types of roles available for each project."/></div>

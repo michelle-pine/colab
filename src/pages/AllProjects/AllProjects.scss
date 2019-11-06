@@ -20,6 +20,25 @@
       border: 1px solid $border;
       @include shadow;
 
+      .search {
+        position: relative;
+        
+        .search-icon {
+          display: inline-block;
+          position: absolute;
+          right: 12px;
+          top: 12px;
+          color: $dark-grey;
+        }
+        .form-control {
+          @include body-text;
+        }
+        .form-control::placeholder {
+          @include body-text;
+          color: rgb(170, 170, 170);
+        }
+      }
+
       h1 {
         @include h3;
         color: $primary-orange;
