@@ -32,6 +32,10 @@
       }
       .filter {
         padding: 10px 0px;
+
+        .multi-select {
+          margin-top: 5px;
+        }
         .dropdown-heading {
           border-width: 2px!important;
           font-weight: 500;

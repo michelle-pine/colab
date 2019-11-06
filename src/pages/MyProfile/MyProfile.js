@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./MyProfile.scss";
 import ProjectPreview from "../../components/ProjectPreview";
+import HelpDialog from '../../components/HelpDialog/HelpDialog'
 import store from "../../store/index";
 import { userUtils } from "../../utils/user_utils";
 
@@ -141,7 +142,7 @@ class MyProfile extends React.Component {
            
 
             {/* links */}
-            <h3>Links</h3>
+            <h3>Links <HelpDialog message="Enter comma separated links to personal websites, LinkedIn, or projects."/></h3>
             {editingLinks ? (
               <textarea
                 value={links.toString()}
@@ -166,7 +167,7 @@ class MyProfile extends React.Component {
             >
               {editingLinks ? "Done" : <div><i className="fa fa-link"></i>&nbsp;Edit Links</div>}
             </button>
-            <h3>Current Projects</h3>
+            <h3>Current Projects <HelpDialog message="Incomplete projects you are currently participating in."/></h3>
             <div className="project-preview-container">
               {currentProjects.length === 0
                 ? emptyProjectsList
@@ -174,7 +175,7 @@ class MyProfile extends React.Component {
                     return <ProjectPreview key={idx} project={item} />;
                   })}
             </div>
-            <h3>Past Projects</h3>
+            <h3>Past Projects <HelpDialog message="Complete projects you previously participated in. "/></h3>
             <div className="project-preview-container">
               {pastProjects.length === 0
                 ? emptyProjectsList
@@ -182,7 +183,7 @@ class MyProfile extends React.Component {
                     return <ProjectPreview project={item} />;
                   })}
             </div>
-            <h3>Pending Projects</h3>
+            <h3>Pending Projects <HelpDialog message="Incomplete projects you have applied to."/></h3>
             <div className="project-preview-container">
               {pendingProjects.length === 0
                 ? emptyProjectsList

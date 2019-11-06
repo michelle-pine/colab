@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './AllProjects.scss';
 import { withRouter } from "react-router-dom";
 import MultiSelect from "@khanacademy/react-multi-select";
@@ -13,6 +12,7 @@ import { projectUtils } from '../../utils/project_utils';
 
 //components
 import ProjectCard from '../../components/ProjectCard/ProjectCard'
+import HelpDialog from '../../components/HelpDialog/HelpDialog'
 
 class AllProjects extends React.Component {
   constructor(props) {
@@ -82,9 +82,9 @@ class AllProjects extends React.Component {
         <div className="sidebar">
           <div className="sidebar-box">
             <h1>All Projects</h1>
-            <h2><i className="fa fa-filter"></i>&nbsp; Project Filters</h2>
+            <h2><i className="fa fa-filter"></i>&nbsp; Project Filters <HelpDialog message="Use these filters to narrow down results." /></h2>
             <div className="filter positions">
-              <div>Positions</div>
+              <div>Positions <HelpDialog message="The types of roles available for each project."/></div>
               <MultiSelect
                   options={this.state.positions}
                   selected={this.state.selectedPositions}
@@ -100,7 +100,7 @@ class AllProjects extends React.Component {
               />
             </div>
             <div className="filter languages">
-              <div>Languages</div>
+              <div>Languages <HelpDialog message="The coding languages used to implement a project (i.e. Java, Python, Javascript)."/></div>
               <MultiSelect
                   options={this.state.languages}
                   selected={this.state.selectedLanguages}
@@ -116,7 +116,7 @@ class AllProjects extends React.Component {
               />
             </div>
             <div className="filter technologies">
-              <div>Technologies</div>
+              <div>Technologies <HelpDialog message="The non-coding language technologies used to implement a project."/></div>
               <MultiSelect
                   options={this.state.technologies}
                   selected={this.state.selectedTechnologies}
@@ -132,7 +132,7 @@ class AllProjects extends React.Component {
               />
             </div>
             <div className="filter topics">
-              <div>Topics</div>
+              <div>Topics <HelpDialog message="The genre of application of a project."/></div>
               <MultiSelect
                   options={this.state.topics}
                   selected={this.state.selectedTopics}
@@ -148,7 +148,7 @@ class AllProjects extends React.Component {
               />
             </div>
             <div className="filter difficulty">
-               <div>Difficulty</div>
+               <div>Difficulty  <HelpDialog message="The proficiency level in coding/design/business required to complete a project."/></div>
               <MultiSelect
                   options={this.state.difficulty}
                   selected={this.state.selectedDifficulty}

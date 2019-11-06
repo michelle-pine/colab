@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './CreateProject.scss';
 
 import MultiSelect from "@khanacademy/react-multi-select";
+import HelpDialog from '../../components/HelpDialog/HelpDialog'
 
 //stores
 import store from '../../store/index';
@@ -163,11 +164,11 @@ class CreateProject extends React.Component {
             <textarea className="form-control" defaultValue={this.state.newProject.description} id="new-project-description"></textarea>
           </div>
           <div className="form-group">
-            <label htmlFor="new-project-github"><i className="fa fa-github"></i>&nbsp;Github Link</label>
+            <label htmlFor="new-project-github"><i className="fa fa-github"></i>&nbsp;Github Link <HelpDialog message="Paste the link to the Github Repository for this project."/></label>
             <input type="text" defaultValue={this.state.newProject.githubLink} className="form-control" id="new-project-github" placeholder="https://"/>
           </div>
           <div className="form-group">
-            <label htmlFor="new-project-prototype"><i className="fa fa-link"></i>&nbsp;Link to Prototype</label>
+            <label htmlFor="new-project-prototype"><i className="fa fa-link"></i>&nbsp;Link to Prototype <HelpDialog message="Paste the link to a folder or online platform that displays the prototype for this project."/></label>
             <input type="text" defaultValue={this.state.newProject.prototypeLink} className="form-control" id="new-project-prototype" placeholder="https://"/>
           </div>
           <div className="form-group form-button-group">
@@ -221,7 +222,7 @@ class CreateProject extends React.Component {
         <div className="create-project-inputs">
           <p>Please select the status of your project team. Alternatively, you may leave all checkboxes blank.</p>
           <fieldset className="front-end-teammates teammate-section">
-            <legend><h3>Front-End</h3></legend>
+            <legend><h3>Front-End <HelpDialog message="The client-facing side of the code for this project."/></h3></legend>
             <div className="form-check">
               <input onClick={this.onReClickCheckbox} checked={this.state.stepTwo["need-front-end"]} className="form-check-input" id="need-front-end" type="checkbox" name="past-experience"/>
               <label className="form-check-label" htmlFor="need-front-end">I need teammates</label>
@@ -233,7 +234,7 @@ class CreateProject extends React.Component {
             </div>
           </fieldset>
           <fieldset className="back-end-teammates teammate-section">
-            <legend><h3>Back-End</h3></legend>
+            <legend><h3>Back-End <HelpDialog message="The core computational side of the code for this project."/></h3></legend>
             <div className="form-check">
               <input onClick={this.onReClickCheckbox} checked={this.state.stepTwo["need-back-end"]}  className="form-check-input" id="need-back-end" type="checkbox" name="past-experience"/>
               <label className="form-check-label" htmlFor="need-back-end">I need teammates</label>
@@ -245,7 +246,7 @@ class CreateProject extends React.Component {
             </div>
           </fieldset>
           <fieldset className="design-teammates teammate-section">
-            <legend><h3>Design</h3></legend>
+            <legend><h3>Design <HelpDialog message="The visual considerations for this project."/></h3></legend>
             <div className="form-check">
               <input onClick={this.onReClickCheckbox} checked={this.state.stepTwo["need-design"]}  className="form-check-input" id="need-design" type="checkbox" name="past-experience"/>
               <label className="form-check-label" htmlFor="need-design">I need teammates</label>
@@ -257,7 +258,7 @@ class CreateProject extends React.Component {
             </div>
           </fieldset>
           <fieldset className="business-teammates teammate-section">
-            <legend><h3>Business</h3></legend>
+            <legend><h3>Business <HelpDialog message="The product management side of this project."/></h3></legend>
             <div className="form-check">
               <input onClick={this.onReClickCheckbox} checked={this.state.stepTwo["need-business"]} className="form-check-input" id="need-business" type="checkbox" name="past-experience"/>
               <label className="form-check-label" htmlFor="need-business">I need teammates</label>
@@ -296,7 +297,7 @@ class CreateProject extends React.Component {
         <div className="create-project-inputs">
           <p>Please select some tags to describe this project. You may also leave this section blank.</p>
           <div className="form-group">
-            <legend><h3>Languages</h3></legend>
+            <legend><h3>Languages <HelpDialog message="The coding languages used to implement this project (i.e. Java, Python, Javascript)."/></h3></legend>
             <MultiSelect
                 options={languages}
                 selected={this.state.selectedLanguages}
@@ -312,7 +313,7 @@ class CreateProject extends React.Component {
             />
           </div>
           <div className="form-group">
-            <legend><h3>Technologies</h3></legend>
+            <legend><h3>Technologies <HelpDialog message="The non-coding language technologies used to implement this project."/></h3></legend>
             <MultiSelect
                 options={technologies}
                 selected={this.state.selectedTechnologies}
@@ -328,7 +329,7 @@ class CreateProject extends React.Component {
             />
           </div>
           <div className="form-group">
-            <legend><h3>Topics</h3></legend>
+            <legend><h3>Topics <HelpDialog message="The genre of application of this project."/></h3></legend>
             <MultiSelect
                 options={topics}
                 selected={this.state.selectedTopics}
@@ -344,7 +345,7 @@ class CreateProject extends React.Component {
             />
           </div>
           <div className="form-group">
-            <legend><h3>Difficulty</h3></legend>
+            <legend><h3>Difficulty <HelpDialog message="The proficiency level in coding/design/business required to complete this project."/></h3></legend>
             <div className="form-group">
               <label className="sr-only" htmlFor="difficulty-select">Select Difficulty</label>
               <select onChange={this.onSelectDifficulty} defaultValue={this.state.difficulty} className="form-control" id="difficulty-select">

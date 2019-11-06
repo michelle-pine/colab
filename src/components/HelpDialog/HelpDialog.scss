@@ -1,1 +1,33 @@
 @import '../../index.scss';
+
+.help-dialog {
+  position: relative;
+  cursor: pointer;
+  i {
+    color: $primary-teal!important;
+    width: 20px;
+    font-size: 14px!important;
+    height: 20px;
+    border: 1px solid $primary-teal;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;;
+  }
+  .help-message {
+    position: absolute;
+    z-index: 999;
+    font-size: 12px;
+    background: $dark-grey;
+    color: white;
+    line-height: 1.5;
+    width: 150px;
+    display: none;
+    padding: 5px;
+    left: 0;
+
+    &.show {
+      display: block; 
+    }
+  }
+}

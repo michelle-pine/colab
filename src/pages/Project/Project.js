@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./Project.scss";
 import store from "../../store/index";
 import { projectUtils } from "../../utils/project_utils";
 import Tag from "../../components/Tag/Tag";
-import { Link } from "react-router-dom";
+import HelpDialog from '../../components/HelpDialog/HelpDialog'
 
 import { applyForProject, cancelApplication } from "../../actions/index";
 const CANCEL_APPLICATION = "Cancel Application";
@@ -113,6 +112,13 @@ class Project extends React.Component {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
     }
+    let helpDesc = {
+      "Languages": "The coding languages used to implement a project (i.e. Java, Python, Javascript).",
+      "Technologies": "The non-coding language technologies used to implement this project.",
+      "Topics": "The genre of application of this project.",
+      "Difficulty": "The proficiency level in coding/design/business required to complete a project.",
+      "Positions": "The types of roles available for this project.",
+    }
     let project = this.getProject();
     let convertedProject = projectUtils.convertProject(project);
     let businessMembers = convertedProject.projectMembersExpanded[BUSINESS];
@@ -152,7 +158,7 @@ class Project extends React.Component {
               ) : null}
 
 
-              <h3 id="position-header">Positions</h3>
+              <h3 id="position-header">Positions <HelpDialog message="The types of roles available for each project. You may apply for positions where the option is available."/></h3>
 
               {businessMembers.length !== 0 ||
               convertedProject.tags.indexOf(4) >= 0 ? (
@@ -260,7 +266,8 @@ class Project extends React.Component {
               </div>
             </div>
             <div id="tags-container" className="project-tags col-md-6 col-12">
-            {tagsCategories.map((category, i) => {
+            { 
+              tagsCategories.map((category, i) => {
               let filteredTags = this.filterTagsByCategory(
                 convertedProject.tagsRich,
                 category
@@ -268,7 +275,7 @@ class Project extends React.Component {
 
               return (
                 <div key={i}>
-                  <h4 className="category-header">{category}</h4>
+                  <h4 className="category-header">{category} <HelpDialog message={helpDesc[category]} /></h4>
                   {filteredTags.map(tag => {
                     return <Tag tag={tag} key={tag.id} />;
                   })}
