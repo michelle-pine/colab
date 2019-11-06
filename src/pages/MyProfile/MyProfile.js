@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./MyProfile.scss";
 import ProjectPreview from "../../components/ProjectPreview";
+import store from "../../store/index";
+import { userUtils } from "../../utils/user_utils";
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -14,24 +16,18 @@ class MyProfile extends React.Component {
         {
           projectName: "Chore Chart",
           projectCreator: "Greg",
-          profileData: "",
           timeCreated: "Just now"
         }
       ],
       pastProjects: [],
-      presentProjects: [],
-      links: [
-        "https://github.com/michelle-pine/colab",
-        "https://github.com/michelle-pine/colab"
-      ],
-      firstName: "John",
-      lastName: "Snow",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      mail: "snow.j@gmail.com"
+      pendingProjects: [],
+      links: [],
+      firstName: store.getState().user.firstname,
+      lastName: store.getState().user.lastname,
+      description: "",
+      mail: store.getState().user.username
     };
   }
-
 
   handleEditDescriptionClicked = () => {
     this.setState({ editingDescription: !this.state.editingDescription });
@@ -53,12 +49,51 @@ class MyProfile extends React.Component {
     });
   };
 
+  componentDidMount() {
+    let user = userUtils.convertUser();
+
+    let current = []
+    user.myProjectsExpanded.current.forEach(project => {
+      current.push({
+        projectName: project.name,
+        projectCreator: store.getState().users[project.creatorId].firstname,
+        timeCreated: project.timeCreated
+      })
+    })
+
+    let past = []
+    user.myProjectsExpanded.past.forEach(project => {
+      past.push({
+        projectName: project.name,
+        projectCreator: store.getState().users[project.creatorId].firstname,
+        timeCreated: project.timeCreated
+      })
+    })
+
+    let pending = []
+    user.myProjectsExpanded.pending.forEach(project => {
+      pending.push({
+        projectName: project.name,
+        projectCreator: store.getState().users[project.creatorId].firstname,
+        timeCreated: project.timeCreated
+      })
+    })
+
+    this.setState({
+      currentProjects: current,
+      pastProjects: past,
+      pendingProjects: pending
+    })
+
+  }
+
   render() {
+
     const emptyProjectsList = <p> No projects yet.</p>;
     const {
       currentProjects,
       pastProjects,
-      presentProjects,
+      pendingProjects,
       links,
       firstName,
       lastName,
@@ -69,9 +104,9 @@ class MyProfile extends React.Component {
       editingLinks
     } = this.state;
 
+
     return (
       <div id="profile-page">
-
         {/* First and last Name */}
         <h4>
           <span>{firstName} </span>
@@ -93,7 +128,7 @@ class MyProfile extends React.Component {
             onClick={this.handleEditDescriptionClicked}
             className={editable ? "show edit-button" : "hide edit-button"}
           >
-            {editingDescription ? "Done" : "Edit"}
+            {editingDescription ? "Done" : "Edit Description"}
           </p>
         </div>
 
@@ -123,7 +158,7 @@ class MyProfile extends React.Component {
           onClick={this.handleEditLinksClicked}
           className={editable ? "show edit-button" : "hide edit-button"}
         >
-          {editingLinks ? "Done" : "Edit"}
+          {editingLinks ? "Done" : "Edit Links"}
         </p>
 
         {/* projects */}
@@ -145,9 +180,9 @@ class MyProfile extends React.Component {
         </div>
         <h3>Pending Projects</h3>
         <div className="project-preview-container">
-          {presentProjects.length === 0
+          {pendingProjects.length === 0
             ? emptyProjectsList
-            : presentProjects.map(item => {
+            : pendingProjects.map(item => {
                 return <ProjectPreview project={item} />;
               })}
         </div>

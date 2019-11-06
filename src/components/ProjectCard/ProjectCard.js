@@ -21,7 +21,7 @@ class ProjectCard extends React.Component {
     }
     return renderedTags;
   }
-  
+
   render() {
     const timeAgo = new TimeAgo('en-US')
 

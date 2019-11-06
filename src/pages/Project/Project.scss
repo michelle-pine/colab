@@ -1,1 +1,29 @@
+@import "../../index.scss";
+h2 {
+  @include h2;
+}
 
+h3 {
+  @include h3;
+}
+
+h4 {
+  @include h4;
+}
+
+#project-container {
+  padding: 15px 30px;
+
+}
+
+.category-header {
+  padding-top: 20px;
+}
+
+#position-header {
+  margin-top: 15px;
+}
+
+.position-section {
+  margin-bottom: 15px;
+}

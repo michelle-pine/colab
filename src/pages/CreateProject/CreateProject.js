@@ -20,8 +20,8 @@ class CreateProject extends React.Component {
     const tags = Object.keys(storeTags).map(function (key) {
       return { label: storeTags[key]["name"] , value: key, type: storeTags[key]["type"]};
     });
-    this.state = { 
-      step: 1, 
+    this.state = {
+      step: 1,
       newProject: {
         projectMembers: {
           "front-end": [],
@@ -30,8 +30,8 @@ class CreateProject extends React.Component {
           "business": [],
         },
         tags: []
-      }, 
-      allUsers: users, 
+      },
+      allUsers: users,
       showSelect: {
         "front-end": false,
         "back-end": false,
@@ -135,7 +135,7 @@ class CreateProject extends React.Component {
   }
 
   onSelectCheckbox(e) {
-    const id = e.target.id.substring(5, e.target.id.length); 
+    const id = e.target.id.substring(5, e.target.id.length);
     let curSelectState = this.state.showSelect;
     curSelectState[id] = !curSelectState[id]
     const curProject =  this.state.newProject;
@@ -274,7 +274,7 @@ class CreateProject extends React.Component {
               <button onClick={this.goBack} className="back-button">Back</button>
             </div>
             <button onClick={() => this.props.history.push("/")} className="back-button">Cancel</button>
-          </div>         
+          </div>
         </div>
       </form>
     );
@@ -361,7 +361,7 @@ class CreateProject extends React.Component {
               <button onClick={this.goBack} className="back-button">Back</button>
             </div>
             <button onClick={() => this.props.history.push("/")} className="back-button">Cancel</button>
-          </div>    
+          </div>
         </div>
       </form>
     );
@@ -369,11 +369,11 @@ class CreateProject extends React.Component {
 
   renderStep() {
     switch (this.state.step) {
-      case 1: 
+      case 1:
         return this.renderStepOne();
-      case 2: 
+      case 2:
         return this.renderStepTwo();
-      case 3: 
+      case 3:
         return this.renderStepThree();
     }
   }
