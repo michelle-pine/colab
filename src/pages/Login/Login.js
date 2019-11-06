@@ -12,36 +12,47 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {username: null, password: null, firstName: null, lastName: null, roles: null};
+    this.state = {username: null, password: null, firstName: null, lastName: null, roles: null, showError: false};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const elements = e.target.elements;
-    const user = {
-      username: elements["user-email"].value,
-      password: elements["password"].value,
-      firstname: elements["user-first-name"].value,
-      lastname: elements["user-last-name"].value,
-      frontend: elements["frontend"].checked,
-      backend: elements["backend"].checked,
-      design: elements["design"].checked,
-      business: elements["business"].checked,
-      loggedIn: true,
+    if (elements["password"].value.length >= 8 && elements["password"].value === elements["password-confirm"].value) {
+      const user = {
+        username: elements["user-email"].value,
+        firstname: elements["user-first-name"].value,
+        lastname: elements["user-last-name"].value,
+        frontend: elements["frontend"].checked,
+        backend: elements["backend"].checked,
+        design: elements["design"].checked,
+        business: elements["business"].checked,
+        loggedIn: true,
+        myProjects: {
+          current: [],
+          pending: [],
+          past: [],
+        }
+      }
+      for (var item in user) {
+        cookieUtils.bakeCookie(item, user[item]);
+      }
+      store.dispatch(registerUser(user));
+      this.props.history.push("/");
     }
-    for (var item in user) {
-      cookieUtils.bakeCookie(item, user[item]);
+    else {
+      this.setState({showError: true});
     }
-    store.dispatch(registerUser(user));
-    this.props.history.push("/");
   }
 
   render() {
+    const error = <p className="error-message"><i className="fa fa-exclamation-circle"></i>&nbsp;Passwords Must Be More Than 8 Characters and Must Match </p>;
     return (
       <div className="login">
           <div className="login-box">
             <h1><span className="logo">CoLab</span> / Register</h1>
+            {this.state.showError ? error : null}
             <p>
               CoLab is an online software collaboration community for coders, designers, and business people with complementary skill sets. Register to use CoLab with your Northeastern credentials and start hacking!
             </p>
@@ -62,11 +73,11 @@ class Login extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="user-password">Password</label>
-                <input name="password" type="password" className="form-control" id="user-password"/>
+                <input name="password" type="password" className={`form-control ${this.state.showError ? "errored" : ""}`} id="user-password"/>
               </div>
               <div className="form-group">
                 <label htmlFor="user-password-confirm">Confirm Password</label>
-                <input name="password-confirm" type="password" className="form-control" id="user-password-confirm"/>
+                <input name="password-confirm" type="password" className={`form-control ${this.state.showError ? "errored" : ""}`} id="user-password-confirm"/>
               </div>
               <fieldset className="experience">
                 <legend>I have experience in:</legend>

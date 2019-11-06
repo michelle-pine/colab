@@ -13,6 +13,20 @@
     @include shadow();
     border: 1px solid #ddd;
     background: $white;
+    .error-message {
+      color: $red;
+      display: flex;
+      margin: 0px 20px 20px 20px;
+      font-weight: 500;
+      padding: 20px;
+      align-items: center;
+      border: 1px solid $red;
+      background-color: lighten($red, 60);
+      i {
+        font-size: 25px;
+        margin-right: 10px;
+      }
+    }
 
     .form-group {
       margin-bottom: 5px;
@@ -21,6 +35,10 @@
     form {
       padding: 25px;
       width: 100%;
+
+      .errored {
+        border: 1px solid $red;
+      }
 
       .experience {
         legend {

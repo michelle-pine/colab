@@ -207,10 +207,6 @@ export const tags = {
     name: "JQuery",
     type: "Technologies"
   },
-  54: {
-    name: "AWS",
-    type: "Technologies"
-  },
   55: {
     name: "Boostrap",
     type: "Technologies"

@@ -4,6 +4,9 @@ import './Navbar.scss';
 import { Link, NavLink } from 'react-router-dom';
 import store from '../../store/index';
 import { connect } from 'react-redux';
+import { registerUser } from "../../actions/index";
+import { cookieUtils } from "../../utils/cookie_utils"
+
 
 
 class Navbar extends React.Component {
@@ -13,6 +16,11 @@ class Navbar extends React.Component {
     }
 
     return match.url === "/";
+  }
+
+  logout() {
+    cookieUtils.deleteUserCookieData();
+    store.dispatch(registerUser({loggedIn: false}));
   }
 
   render() {
@@ -38,7 +46,7 @@ class Navbar extends React.Component {
               <NavLink activeClassName="active" className="nav-link" to="/my-profile">My Profile</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">Logout</Link>
+              <Link onClick={this.logout} className="nav-link" to="/login">Logout</Link>
             </li>
           </ul>
         </div>

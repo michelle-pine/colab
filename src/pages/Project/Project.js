@@ -23,6 +23,8 @@ class Project extends React.Component {
       frontendButtonText: "",
       backendButtonText: ""
     };
+
+    this.goBack = this.goBack.bind(this);
   }
   getProject() {
     const { id } = this.props.match.params;
@@ -103,6 +105,10 @@ class Project extends React.Component {
     return applied;
   }
 
+  goBack(e) {
+    this.props.history.go(-1);
+  }
+
   render() {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
@@ -122,148 +128,154 @@ class Project extends React.Component {
     });
 
     return (
-      <div id="project-container" className="row">
-        <div className="col-md-6 col-12">
-          <Link to={`/`}>
-            <i class="fa fa-arrow-left"></i> Back
-          </Link>
-          <h3>{convertedProject.name}</h3>
-          <p>{convertedProject.description}</p>
-          <p>
-            <a href="https://github.com/michelle-pine/colab">
-              {convertedProject.githubLink}
-            </a>
-          </p>
-          {convertedProject.prototypeLink !== "" ? (
-            <p>
-              <a href="https://github.com/michelle-pine/colab">
-                {convertedProject.prototypeLink}
-              </a>
-            </p>
-          ) : null}
+      <div id="project-container">
+        <a className="back-link" onClick={this.goBack} href="#">
+            <i className="fa fa-chevron-left"></i> Back
+        </a>
+        <div className="row">
+          <div className="project-info col-md-6 col-12">
 
-          <h3 id="position-header">Positions</h3>
-
-          {businessMembers.length !== 0 ||
-          convertedProject.tags.indexOf(4) >= 0 ? (
-            <div className="position-section">
-              <h4>Business</h4>
-              {businessMembers.map(member => {
-                return (
-                  <p key={member.id}>
-                    {member.firstname} {member.lastname}
-                  </p>
-                );
-              })}
-              {convertedProject.tags.indexOf(4) >= 0 ? (
-                <button
-                  className={
-                    this.state.businessButtonText === APPLY
-                      ? "go-button"
-                      : "back-button"
-                  }
-                  onClick={this.handleApplyBusinessClicked}
-                >
-                  {this.state.businessButtonText}
-                </button>
+            <h2>{convertedProject.name}</h2>
+              <div className="project-details">
+              <p>{convertedProject.description}</p>
+              <p>
+                <a href="https://github.com/michelle-pine/colab">
+                  {convertedProject.githubLink}
+                </a>
+              </p>
+              {convertedProject.prototypeLink !== "" ? (
+                <p>
+                  <a href="https://github.com/michelle-pine/colab">
+                    {convertedProject.prototypeLink}
+                  </a>
+                </p>
               ) : null}
-            </div>
-          ) : null}
 
-          {backendMembers.length !== 0 ||
-          convertedProject.tags.indexOf(2) >= 0 ? (
-            <div className="position-section">
-              <h4>Back-end</h4>
-              {backendMembers.map(member => {
-                return (
-                  <p key={member.id}>
-                    {member.firstname} {member.lastname}
-                  </p>
-                );
-              })}
-              {convertedProject.tags.indexOf(2) >= 0 ? (
-                <button
-                  className={
-                    this.state.backendButtonText === APPLY
-                      ? "go-button"
-                      : "back-button"
-                  }
-                  onClick={this.handleApplyBackendClicked}
-                >
-                  {this.state.backendButtonText}
-                </button>
+
+              <h3 id="position-header">Positions</h3>
+
+              {businessMembers.length !== 0 ||
+              convertedProject.tags.indexOf(4) >= 0 ? (
+                <div className="position-section">
+                  <h4>Business</h4>
+                  {businessMembers.map(member => {
+                    return (
+                      <p key={member.id}>
+                        {member.firstname} {member.lastname}
+                      </p>
+                    );
+                  })}
+                  {convertedProject.tags.indexOf(4) >= 0 ? (
+                    <button
+                      className={
+                        this.state.businessButtonText === APPLY
+                          ? "go-button"
+                          : "back-button"
+                      }
+                      onClick={this.handleApplyBusinessClicked}
+                    >
+                      {this.state.businessButtonText}
+                    </button>
+                  ) : null}
+                </div>
               ) : null}
-            </div>
-          ) : null}
 
-          {frontendMembers.length !== 0 ||
-          convertedProject.tags.indexOf(1) >= 0 ? (
-            <div className="position-section">
-              <h4>Front-end</h4>
-              {frontendMembers.map(member => {
-                return (
-                  <p key={member.id}>
-                    {member.firstname} {member.lastname}
-                  </p>
-                );
-              })}
-              {convertedProject.tags.indexOf(1) >= 0 ? (
-                <button
-                  onClick={this.handleApplyFrontendClicked}
-                  className={
-                    this.state.frontendButtonText === APPLY
-                      ? "go-button"
-                      : "back-button"
-                  }
-                >
-                  {this.state.frontendButtonText}
-                </button>
+              {backendMembers.length !== 0 ||
+              convertedProject.tags.indexOf(2) >= 0 ? (
+                <div className="position-section">
+                  <h4>Back-end</h4>
+                  {backendMembers.map(member => {
+                    return (
+                      <p key={member.id}>
+                        {member.firstname} {member.lastname}
+                      </p>
+                    );
+                  })}
+                  {convertedProject.tags.indexOf(2) >= 0 ? (
+                    <button
+                      className={
+                        this.state.backendButtonText === APPLY
+                          ? "go-button"
+                          : "back-button"
+                      }
+                      onClick={this.handleApplyBackendClicked}
+                    >
+                      {this.state.backendButtonText}
+                    </button>
+                  ) : null}
+                </div>
               ) : null}
-            </div>
-          ) : null}
 
-          {designMembers.length !== 0 ||
-          convertedProject.tags.indexOf(3) >= 0 ? (
-            <div className="position-section">
-              <h4>Design</h4>
-              {designMembers.map(member => {
-                return (
-                  <p key={member.id}>
-                    {member.firstname} {member.lastname}
-                  </p>
-                );
-              })}
-              {convertedProject.tags.indexOf(3) >= 0 ? (
-                <button
-                  onClick={this.handleApplyDesignClicked}
-                  className={
-                    this.state.designButtonText === APPLY
-                      ? "go-button"
-                      : "back-button"
-                  }
-                >
-                  {this.state.designButtonText}
-                </button>
+              {frontendMembers.length !== 0 ||
+              convertedProject.tags.indexOf(1) >= 0 ? (
+                <div className="position-section">
+                  <h4>Front-end</h4>
+                  {frontendMembers.map(member => {
+                    return (
+                      <p key={member.id}>
+                        {member.firstname} {member.lastname}
+                      </p>
+                    );
+                  })}
+                  {convertedProject.tags.indexOf(1) >= 0 ? (
+                    <button
+                      onClick={this.handleApplyFrontendClicked}
+                      className={
+                        this.state.frontendButtonText === APPLY
+                          ? "go-button"
+                          : "back-button"
+                      }
+                    >
+                      {this.state.frontendButtonText}
+                    </button>
+                  ) : null}
+                </div>
               ) : null}
-            </div>
-          ) : null}
-        </div>
-        <div id="tags-container" className="col-md-6 col-12">
-          {tagsCategories.map((category, i) => {
-            let filteredTags = this.filterTagsByCategory(
-              convertedProject.tagsRich,
-              category
-            );
 
-            return (
-              <div key={i}>
-                <h4 className="category-header">{category}</h4>
-                {filteredTags.map(tag => {
-                  return <Tag tag={tag} key={tag.id} />;
-                })}
+              {designMembers.length !== 0 ||
+              convertedProject.tags.indexOf(3) >= 0 ? (
+                <div className="position-section">
+                  <h4>Design</h4>
+                  {designMembers.map(member => {
+                    return (
+                      <p key={member.id}>
+                        {member.firstname} {member.lastname}
+                      </p>
+                    );
+                  })}
+                  {convertedProject.tags.indexOf(3) >= 0 ? (
+                    <button
+                      onClick={this.handleApplyDesignClicked}
+                      className={
+                        this.state.designButtonText === APPLY
+                          ? "go-button"
+                          : "back-button"
+                      }
+                    >
+                      {this.state.designButtonText}
+                    </button>
+                  ) : null}
+                </div>
+                ) : null}
               </div>
-            );
-          })}
+            </div>
+            <div id="tags-container" className="project-tags col-md-6 col-12">
+            {tagsCategories.map((category, i) => {
+              let filteredTags = this.filterTagsByCategory(
+                convertedProject.tagsRich,
+                category
+              );
+
+              return (
+                <div key={i}>
+                  <h4 className="category-header">{category}</h4>
+                  {filteredTags.map(tag => {
+                    return <Tag tag={tag} key={tag.id} />;
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

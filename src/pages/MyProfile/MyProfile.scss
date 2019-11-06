@@ -1,15 +1,46 @@
 @import '../../index.scss';
 
 #profile-page {
-  width: 100%;
-  height: 100vh;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+
+  .user-info { 
+    background: $white;
+    border: 1px solid $border;
+    @include shadow;
+    max-width: 800px;
+
+    i {
+      color: $dark-grey;
+    }
+
+    h2 {
+      color: $primary-teal;
+      border-bottom: 1px solid $border;
+      padding: 20px;
+      i {
+        width: 40px;
+        border-radius: 50%;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: $dark-grey;
+        color: $white;
+      }
+    }
+    .user-details {
+      padding: 0px 20px 20px 20px;
+    }
+
+  }
 
   #profile-description-textarea {
-    width: 50%;
-    border: 1px solid $border;
-    background: $background;
+    max-width: 300px;
     min-height: 100px;
+    margin-bottom: 15px;
+    display: block;
   }
 
   #profile-description-p {
@@ -18,9 +49,9 @@
   }
 
   #links-textarea {
-    min-width: 300px;
-    border: 1px solid $border;
-    background: $background;
+    max-width: 300px;
+    display: block;
+    margin-bottom: 15px;
   }
 
   .show {
@@ -31,13 +62,6 @@
     display: none;
   }
 
-  .edit-button {
-    color: $light-orange;
-  }
-
-  .edit-button:hover {
-    cursor:pointer;
-  }
 
   h4 {
     padding-top: 10px;
@@ -47,6 +71,12 @@
   h3 {
     @include h3;
     padding-top: 20px;
+  }
+
+  .go-button {
+    i {
+      color: $white;
+    }
   }
 
   .profile-link {

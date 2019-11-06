@@ -163,7 +163,7 @@ class AllProjects extends React.Component {
                 }}
               />
             </div>
-            <button onClick={this.clearFilters} class="back-button">Clear Filters</button>
+            <button onClick={this.clearFilters} className="back-button">Clear Filters</button>
 
           </div>
         </div>

@@ -12,21 +12,27 @@ export const userUtils = {
       user.myProjects.current.forEach(application => {
         console.log(application)
         if(currentProjects.indexOf(projects[application.projectId]) < 0) {
-          currentProjects.push(projects[application.projectId]);
+          let project = projects[application.projectId];
+          project.id = application.projectId;
+          currentProjects.push(project);
         }
       })
 
       let pendingProjects = [];
       user.myProjects.pending.forEach(application => {
         if(pendingProjects.indexOf(projects[application.projectId]) < 0) {
-          pendingProjects.push(projects[application.projectId]);
+          let project = projects[application.projectId];
+          project.id = application.projectId;
+          pendingProjects.push(project);
         }
       })
 
       let pastProjects = [];
       user.myProjects.past.forEach(application => {
         if(pastProjects.indexOf(projects[application.projectId]) < 0) {
-          pastProjects.push(projects[application.projectId]);
+          let project = projects[application.projectId];
+          project.id = application.projectId;
+          pastProjects.push(project);
         }
       })
 

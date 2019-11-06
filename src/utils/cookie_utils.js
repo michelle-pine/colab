@@ -5,6 +5,18 @@ export const cookieUtils = {
     const cookies = new Cookies();
     cookies.set(name, value, { path: '/' });
   },
+  deleteUserCookieData: function() {
+    const cookies = new Cookies();
+    cookies.remove("username");
+    cookies.remove("password");
+    cookies.remove("firstname");
+    cookies.remove("lastname");
+    cookies.remove("frontend");
+    cookies.remove("backend");
+    cookies.remove("design");
+    cookies.remove("business");
+    cookies.remove("loggedIn");
+  },
   getUserCookieData: function() {
     const cookies = new Cookies();
     const user = {
