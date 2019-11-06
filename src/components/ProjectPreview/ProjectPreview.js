@@ -10,13 +10,8 @@ const ProjectPreview = props => {
     >
       <h4>{props.project.projectName}</h4>
       <p>
-        created by{" "}
-        <a
-          onClick={() => handleProfileClicked(props.project.profileData)}
-          href=""
-        >
-          {props.project.projectCreator}
-        </a>
+        created by {" "}
+        {props.project.projectCreator}
       </p>
       <p>{props.project.timeCreated}</p>
     </div>

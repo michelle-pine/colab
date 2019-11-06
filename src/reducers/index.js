@@ -41,26 +41,64 @@ function rootReducer(state = getInitialState(), action) {
     case ADD_PROJECT:
       const newProjects = Object.assign({}, projects);
       newProjects[action.payload.id] = action.payload.project;
+      let members = action.payload.project.projectMembers;
+      if (members["business"].indexOf(999) >= 0) {
+        newUser.myProjects.current.push({
+          projectId: action.payload.id,
+          position: "business"
+        });
+      }
+      if (members["design"].indexOf(999) >= 0) {
+        newUser.myProjects.current.push({
+          projectId: action.payload.id,
+          position: "design"
+        });
+      }
+      if (members["front-end"].indexOf(999) >= 0) {
+        newUser.myProjects.current.push({
+          projectId: action.payload.id,
+          position: "front-end"
+        });
+      }
+      if (members["back-end"].indexOf(999) >= 0) {
+        newUser.myProjects.current.push({
+          projectId: action.payload.id,
+          position: "back-end"
+        });
+      }
+
+      if (
+        members["business"].indexOf(999) < 0 &&
+        members["design"].indexOf(999) < 0 &&
+        members["front-end"].indexOf(999) < 0 &&
+        members["back-end"].indexOf(999) < 0
+      ) {
+        newUser.myProjects.current.push({
+          projectId: action.payload.id,
+          position: ""
+        });
+      }
+
       return Object.assign({}, state, {
-        projects: newProjects
+        projects: newProjects,
+        user: newUser
       });
     case APPLY_FOR_PROJECT:
       newUser.myProjects.pending.push(action.payload);
-      console.log(newUser);
+
       return Object.assign({}, state, {
         user: newUser
       });
     case CANCEL_APPLICATION:
       newUser.myProjects.pending.forEach((item, idx) => {
         if (
-          item.project === action.payload.projectId &&
+          item.projectId === action.payload.projectId &&
           item.position === action.payload.position
         ) {
           newUser.myProjects.pending.splice(idx, 1);
           return;
         }
       });
-      console.log(newUser);
       return Object.assign({}, state, {
         user: newUser
       });
