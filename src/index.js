@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, HashRouter as Router } from 'react-router-dom'
 
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +26,7 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
   <Provider store={store}>
     <div className="page-wrapper">
-      <Router>
+      <Router basename='/'>
         <Navbar />
         <div>
           <Route exact path="/" component={AllProjects} />
