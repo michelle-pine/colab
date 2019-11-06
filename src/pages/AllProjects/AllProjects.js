@@ -91,7 +91,9 @@ class AllProjects extends React.Component {
       selectedPositions: [],
       selectedTopics: [],
       selectedDifficulty: [],
+      searchValue: "",
     });
+    this.searchBox.value = "";
   }
 
   render() {
@@ -106,7 +108,7 @@ class AllProjects extends React.Component {
             <div className="form-group search">
               <label htmlFor="search-box" className="sr-only">Search</label>
               <i className="search-icon fa fa-search"></i>
-              <input onChange={this.onSearch} id="search-box" className="form-control" placeholder="Search Projects..."/>
+              <input ref={el => this.searchBox = el} onChange={this.onSearch} id="search-box" className="form-control" placeholder="Search Projects..."/>
             </div>
             <h2><i className="fa fa-filter"></i>&nbsp; Project Filters <HelpDialog message="Use these filters to narrow down results." /></h2>
             <div className="filter positions">
