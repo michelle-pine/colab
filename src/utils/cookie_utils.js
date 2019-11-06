@@ -17,6 +17,11 @@ export const cookieUtils = {
       design: cookies.get("design"),
       business: cookies.get("business"),
       loggedIn: cookies.get("loggedIn") === "true",
+      myProjects: {
+        current: [],
+        pending: [],
+        past: [],
+      }
     }
     return user;
   }

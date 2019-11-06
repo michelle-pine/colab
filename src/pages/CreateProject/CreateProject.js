@@ -379,6 +379,9 @@ class CreateProject extends React.Component {
   }
 
   render() {
+    if (!store.getState().user.loggedIn) {
+      this.props.history.push("/login");
+    }
     return (
       <div className="create-project">
         <div className="sidebar">

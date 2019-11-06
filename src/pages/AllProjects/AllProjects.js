@@ -38,11 +38,8 @@ class AllProjects extends React.Component {
   }
 
   commonElements(arr1, arr2) {
-    console.log(arr1);
-    console.log(arr2);
     for (let tag of arr1) {
       if (arr2.indexOf(tag) < 0) {
-        console.log(tag);
         return false;
       }
     }

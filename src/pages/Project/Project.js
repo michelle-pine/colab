@@ -104,6 +104,9 @@ class Project extends React.Component {
   }
 
   render() {
+    if (!store.getState().user.loggedIn) {
+      this.props.history.push("/login");
+    }
     let project = this.getProject();
     let convertedProject = projectUtils.convertProject(project);
     let businessMembers = convertedProject.projectMembersExpanded[BUSINESS];

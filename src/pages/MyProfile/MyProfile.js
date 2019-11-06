@@ -50,45 +50,48 @@ class MyProfile extends React.Component {
   };
 
   componentDidMount() {
-    let user = userUtils.convertUser();
+    if (store.getState().user.loggedIn) { 
+      let user = userUtils.convertUser();
 
-    let current = []
-    user.myProjectsExpanded.current.forEach(project => {
-      current.push({
-        projectName: project.name,
-        projectCreator: store.getState().users[project.creatorId].firstname,
-        timeCreated: project.timeCreated
+      let current = []
+      user.myProjectsExpanded.current.forEach(project => {
+        current.push({
+          projectName: project.name,
+          projectCreator: store.getState().users[project.creatorId].firstname,
+          timeCreated: project.timeCreated
+        })
       })
-    })
 
-    let past = []
-    user.myProjectsExpanded.past.forEach(project => {
-      past.push({
-        projectName: project.name,
-        projectCreator: store.getState().users[project.creatorId].firstname,
-        timeCreated: project.timeCreated
+      let past = []
+      user.myProjectsExpanded.past.forEach(project => {
+        past.push({
+          projectName: project.name,
+          projectCreator: store.getState().users[project.creatorId].firstname,
+          timeCreated: project.timeCreated
+        })
       })
-    })
 
-    let pending = []
-    user.myProjectsExpanded.pending.forEach(project => {
-      pending.push({
-        projectName: project.name,
-        projectCreator: store.getState().users[project.creatorId].firstname,
-        timeCreated: project.timeCreated
+      let pending = []
+      user.myProjectsExpanded.pending.forEach(project => {
+        pending.push({
+          projectName: project.name,
+          projectCreator: store.getState().users[project.creatorId].firstname,
+          timeCreated: project.timeCreated
+        })
       })
-    })
 
-    this.setState({
-      currentProjects: current,
-      pastProjects: past,
-      pendingProjects: pending
-    })
-
+      this.setState({
+        currentProjects: current,
+        pastProjects: past,
+        pendingProjects: pending
+      })
+    }
   }
 
   render() {
-
+    if (!store.getState().user.loggedIn) {
+      this.props.history.push("/login");
+    }
     const emptyProjectsList = <p> No projects yet.</p>;
     const {
       currentProjects,
