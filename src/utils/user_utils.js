@@ -10,7 +10,6 @@ export const userUtils = {
     if (user.myProjects) {
 
       user.myProjects.current.forEach(application => {
-        console.log(application)
         if(currentProjects.indexOf(projects[application.projectId]) < 0) {
           let project = projects[application.projectId];
           project.id = application.projectId;

@@ -39,7 +39,7 @@ function rootReducer(state = getInitialState(), action) {
         user: action.payload
       });
     case ADD_PROJECT:
-      const newProjects = Object.assign({}, projects);
+      const newProjects = Object.assign({}, state.projects);
       newProjects[action.payload.id] = action.payload.project;
       let members = action.payload.project.projectMembers;
       if (members["business"].indexOf(999) >= 0) {
@@ -78,7 +78,6 @@ function rootReducer(state = getInitialState(), action) {
           position: ""
         });
       }
-
       return Object.assign({}, state, {
         projects: newProjects,
         user: newUser

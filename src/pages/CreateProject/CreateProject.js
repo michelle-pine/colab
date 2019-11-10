@@ -30,7 +30,8 @@ class CreateProject extends React.Component {
           "design": [],
           "business": [],
         },
-        tags: []
+        tags: [],
+        author: users[999]
       },
       allUsers: users,
       showSelect: {
@@ -117,7 +118,7 @@ class CreateProject extends React.Component {
     curProject.tags = curProject.tags.concat(this.state.selectedLanguages).concat(this.state.selectedTechnologies).concat(this.state.selectedTopics)
     let id = 0;
     while (true) {
-      if (!store.getState().users[id]) {
+      if (!store.getState().projects[id]) {
         break;
       }
       id++;

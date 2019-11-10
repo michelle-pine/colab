@@ -66,16 +66,23 @@ class AllProjects extends React.Component {
   }
 
   renderProjects() {
-    let projects = this.state.allProjects;
+    let projectsObj = store.getState().projects;
     let selectedTags = this.state.selectedPositions.concat(this.state.selectedLanguages).concat(this.state.selectedTechnologies).concat(this.state.selectedTopics).concat(this.state.selectedDifficulty);
     selectedTags = selectedTags.map((tag) => parseInt(tag));
+    let projects = [];
+    for (let i in projectsObj) { 
+      let project = Object.assign({}, projectsObj[i]);
+      project.id = i;
+      projects.push(project);
+    }
+    projects = projects.sort((a, b) => a.createdAt > b.createdAt ? -1 : 1);
     let renderedProjects = [];
-    for (let i in projects) {
+    for (let i = 0; i < projects.length; i++) {
       if (selectedTags.length === 0 || this.commonElements(selectedTags, projects[i].tags) ) {
         let curProject = projectUtils.convertProject(projects[i]);
         if (this.state.searchValue === "" || this.matchesSearch(curProject.name, curProject.description, curProject.author.firstname + curProject.author.lastname)) {
           renderedProjects.push(
-            <ProjectCard key={i} projectId={i} project={curProject} />
+            <ProjectCard key={i} projectId={projects[i].id} project={curProject} />
           );
         }
       }
