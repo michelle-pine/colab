@@ -38,10 +38,9 @@ class ProjectCard extends React.Component {
   renderProjectStatus() {
     const state = store.getState(); 
     const user = state.user;
-    console.log(state.user);
     if (this.props.project.creatorId === 999) {
       return "MY PROJECT";
-    } else if (this.partOfProject(user)) {
+    } else if (user.myProjects && this.partOfProject(user)) {
       return "APPLIED";
     }
   }
