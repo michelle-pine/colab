@@ -108,6 +108,20 @@ class Project extends React.Component {
     this.props.history.go(-1);
   }
 
+  renderBackButton() {
+    const goBack = this.props.location.search.includes("goback");
+    if (goBack) {
+      return (
+        <a className="back-link" onClick={this.goBack} href="#">
+          <i className="fa fa-chevron-left"></i> Back
+        </a>
+      );
+    }
+    else {
+      return null;
+    }
+  }
+
   render() {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
@@ -135,9 +149,7 @@ class Project extends React.Component {
 
     return (
       <div id="project-container">
-        <a className="back-link" onClick={this.goBack} href="#">
-            <i className="fa fa-chevron-left"></i> Back
-        </a>
+        {this.renderBackButton()}
         <div className="row">
           <div className="project-info col-md-6 col-12">
 
@@ -176,7 +188,7 @@ class Project extends React.Component {
                       className={
                         this.state.businessButtonText === APPLY
                           ? "go-button"
-                          : "back-button"
+                          : "cancel-button"
                       }
                       onClick={this.handleApplyBusinessClicked}
                     >
@@ -202,7 +214,7 @@ class Project extends React.Component {
                       className={
                         this.state.backendButtonText === APPLY
                           ? "go-button"
-                          : "back-button"
+                          : "cancel-button"
                       }
                       onClick={this.handleApplyBackendClicked}
                     >
@@ -229,7 +241,7 @@ class Project extends React.Component {
                       className={
                         this.state.frontendButtonText === APPLY
                           ? "go-button"
-                          : "back-button"
+                          : "cancel-button"
                       }
                     >
                       {this.state.frontendButtonText}
@@ -255,7 +267,7 @@ class Project extends React.Component {
                       className={
                         this.state.designButtonText === APPLY
                           ? "go-button"
-                          : "back-button"
+                          : "cancel-button"
                       }
                     >
                       {this.state.designButtonText}

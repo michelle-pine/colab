@@ -16,7 +16,7 @@ const ProjectPreview = props => {
   return (
     <Link
       className="project-item-container"
-      to={`/projects/${props.project.id}`}
+      to={`/projects/${props.project.id}?goback=true`}
     >
       <h4>{props.project.projectName}</h4>
       <p>

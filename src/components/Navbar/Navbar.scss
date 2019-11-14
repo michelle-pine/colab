@@ -19,7 +19,7 @@
   .navbar-nav {
     .nav-link {
       color: $primary-teal;
-      &.active {
+      &.active, &:hover {
         color: $primary-orange;
       }
     }

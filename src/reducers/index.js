@@ -35,8 +35,11 @@ function rootReducer(state = getInitialState(), action) {
   const newUser = Object.assign({}, state.user);
   switch (action.type) {
     case REGISTER_USER:
+      let allUsers = Object.assign({}, state.users);
+      allUsers[999] = action.payload;
       return Object.assign({}, state, {
-        user: action.payload
+        user: action.payload,
+        users: allUsers,
       });
     case ADD_PROJECT:
       const newProjects = Object.assign({}, state.projects);

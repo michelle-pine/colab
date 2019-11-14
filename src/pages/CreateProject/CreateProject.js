@@ -127,7 +127,7 @@ class CreateProject extends React.Component {
     curProject.creatorId = 999;
     const payload = {id: id, project: curProject}
     store.dispatch(addProject(payload));
-    this.props.history.push("/");
+    this.props.history.push(`/projects/${id}`);
     this.setState({stepThree: e.target.elements});
   }
 

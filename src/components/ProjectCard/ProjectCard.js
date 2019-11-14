@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import './ProjectCard.scss';
 import Tag from '../Tag/Tag';
 import { Link } from 'react-router-dom';
-import TimeAgo from 'javascript-time-ago'
+import TimeAgo from 'javascript-time-ago';
 // Load locale-specific relative date/time formatting rules.
-import en from 'javascript-time-ago/locale/en'
+import en from 'javascript-time-ago/locale/en';
+import store from '../../store/index';
 
 // Add locale-specific relative date/time formatting rules.
 TimeAgo.addLocale(en)
@@ -13,7 +14,9 @@ TimeAgo.addLocale(en)
 class ProjectCard extends React.Component {
   renderTags() {
     let tags = this.props.project.tagsRich;
+    const order = {"Positions": 0, "Languages": 1, "Technologies": 2, "Topics": 3, "Difficulty": 4}
     let renderedTags = [];
+    tags = tags.sort((a, b) => (order[a.type] < order[b.type] ? -1 : 1));
     for (let tag of tags) {
       renderedTags.push(
         <Tag tag={tag} key={tag.id} />
@@ -22,17 +25,39 @@ class ProjectCard extends React.Component {
     return renderedTags;
   }
 
+  filterById(arr, id) {
+    return arr.filter((a) => (a.projectId === `${id}`)).length > 0;
+  }
+
+  partOfProject(user) {
+    const projs = user.myProjects;
+    const id = this.props.projectId;
+    console.log(projs);
+    return this.filterById(projs.current, id) || this.filterById(projs.past, id) || this.filterById(projs.pending, id);
+  }
+  renderProjectStatus() {
+    const state = store.getState(); 
+    const user = state.user;
+    console.log(state.user);
+    if (this.props.project.creatorId === 999) {
+      return "MY PROJECT";
+    } else if (this.partOfProject(user)) {
+      return "APPLIED";
+    }
+  }
+
   render() {
     const timeAgo = new TimeAgo('en-US')
 
     return (
       <div className="project-card">
         <div className="project-card-top-info">
-          <Link to={`/projects/${this.props.projectId}`} className="project-card-name">
+          <Link to={`/projects/${this.props.projectId}?goback=true`} className="project-card-name">
             {this.props.project.name}
+            <div className="project-status">{this.renderProjectStatus()}</div>
           </Link>
           <div className="project-card-button-container">
-            <Link to={`/projects/${this.props.projectId}`} className="project-card-button">
+            <Link to={`/projects/${this.props.projectId}?goback=true`} className="project-card-button">
               More Info
             </Link>
           </div>

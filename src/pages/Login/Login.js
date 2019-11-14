@@ -47,12 +47,11 @@ class Login extends React.Component {
   }
 
   render() {
-    const error = <p className="error-message"><i className="fa fa-exclamation-circle"></i>&nbsp;Passwords Must Be More Than 8 Characters and Must Match </p>;
+    const error = <p className="error-message"><i className="fa fa-exclamation-circle"></i>&nbsp;Passwords Must Be at Least 8 Characters and Must Match </p>;
     return (
       <div className="login">
           <div className="login-box">
             <h1><span className="logo">CoLab</span> / Register</h1>
-            {this.state.showError ? error : null}
             <p>
               CoLab is an online software collaboration community for coders, designers, and business people with complementary skill sets. Register to use CoLab with your Northeastern credentials and start hacking!
             </p>
@@ -79,6 +78,7 @@ class Login extends React.Component {
                 <label htmlFor="user-password-confirm">Confirm Password</label>
                 <input name="password-confirm" type="password" className={`form-control ${this.state.showError ? "errored" : ""}`} id="user-password-confirm"/>
               </div>
+              {this.state.showError ? error : null}
               <fieldset className="experience">
                 <legend>I have experience in:</legend>
                 <div className="form-check">

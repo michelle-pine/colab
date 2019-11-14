@@ -32,6 +32,16 @@ h4 {
       border-bottom: 1px solid $border;
     }
 
+    .cancel-button {
+      @include button;
+      color: $red;
+      @include transition;
+      background-color: lighten($red, 60);
+      &:hover {
+        background-color: lighten($red, 50);
+      }
+    }
+
     
 
     .project-details {

@@ -18,6 +18,12 @@
       @include h3;
       text-decoration: none;
       min-width: 0;
+      .project-status {
+        padding-top: 5px;
+        font-size: 12px;
+        line-height: 0.5px;
+        color: $yellow;
+      }
     }
 
     .project-card-button-container {
@@ -27,6 +33,9 @@
         text-decoration: none;
         text-transform: uppercase;
       }  
+      .project-card-button:hover {
+        background: darken($primary-teal, 10);
+      }
     }
 
   }
