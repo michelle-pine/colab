@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/colab/static/css/main.0b769a0a.chunk.css",
-    "main.js": "/colab/static/js/main.013fa04a.chunk.js",
-    "main.js.map": "/colab/static/js/main.013fa04a.chunk.js.map",
+    "main.css": "/colab/static/css/main.af8d7517.chunk.css",
+    "main.js": "/colab/static/js/main.8820a0a7.chunk.js",
+    "main.js.map": "/colab/static/js/main.8820a0a7.chunk.js.map",
     "runtime-main.js": "/colab/static/js/runtime-main.aa6f4a28.js",
     "runtime-main.js.map": "/colab/static/js/runtime-main.aa6f4a28.js.map",
     "static/css/2.b708a4dd.chunk.css": "/colab/static/css/2.b708a4dd.chunk.css",
     "static/js/2.03719199.chunk.js": "/colab/static/js/2.03719199.chunk.js",
     "static/js/2.03719199.chunk.js.map": "/colab/static/js/2.03719199.chunk.js.map",
     "index.html": "/colab/index.html",
-    "precache-manifest.b56764a277130ab37ef60eecf4738394.js": "/colab/precache-manifest.b56764a277130ab37ef60eecf4738394.js",
+    "precache-manifest.131d2e852d78030d4ae3cc09a55bdf82.js": "/colab/precache-manifest.131d2e852d78030d4ae3cc09a55bdf82.js",
     "service-worker.js": "/colab/service-worker.js",
     "static/css/2.b708a4dd.chunk.css.map": "/colab/static/css/2.b708a4dd.chunk.css.map",
-    "static/css/main.0b769a0a.chunk.css.map": "/colab/static/css/main.0b769a0a.chunk.css.map",
+    "static/css/main.af8d7517.chunk.css.map": "/colab/static/css/main.af8d7517.chunk.css.map",
     "static/media/font-awesome.min.css": "/colab/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.aa6f4a28.js",
     "static/css/2.b708a4dd.chunk.css",
     "static/js/2.03719199.chunk.js",
-    "static/css/main.0b769a0a.chunk.css",
-    "static/js/main.013fa04a.chunk.js"
+    "static/css/main.af8d7517.chunk.css",
+    "static/js/main.8820a0a7.chunk.js"
   ]
 }
