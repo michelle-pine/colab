@@ -347,13 +347,16 @@ class CreateProject extends React.Component {
               Continue
             </button>
             <button
-              onClick={() => this.props.history.push("/")}
+              data-toggle="modal"
+              data-target="#myModal"
               className="back-button"
+              type="button"
             >
               Cancel
             </button>
           </div>
         </div>
+        {this.renderDialog()}
       </form>
     );
   }
@@ -402,6 +405,45 @@ class CreateProject extends React.Component {
     const stepTwo = this.state.stepTwo;
     stepTwo[id] = !stepTwo[id];
     this.setState({ stepTwo: stepTwo });
+  }
+
+  handleCancelClicked = () => {
+    this.props.history.push("/");
+  };
+
+  renderDialog() {
+    return (
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Are you sure you want to cancel? The unsaved changes will be
+                lost.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                className="back-button"
+                data-dismiss="modal"
+                onClick={this.handleCancelClicked}
+              >
+                Cancel project {this.state.isEditing ? "editing" : "creation"}
+              </button>
+              <button type="button" className="go-button" data-dismiss="modal">
+                Continue project {this.state.isEditing ? "editing" : "creation"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   renderStepTwo() {
@@ -566,13 +608,16 @@ class CreateProject extends React.Component {
               </button>
             </div>
             <button
-              onClick={() => this.props.history.push("/")}
+              data-toggle="modal"
+              data-target="#myModal"
               className="back-button"
+              type="button"
             >
               Cancel
             </button>
           </div>
         </div>
+        {this.renderDialog()}
       </form>
     );
   }
@@ -701,13 +746,16 @@ class CreateProject extends React.Component {
               </button>
             </div>
             <button
-              onClick={() => this.props.history.push("/")}
+              data-toggle="modal"
+              data-target="#myModal"
               className="back-button"
+              type="button"
             >
               Cancel
             </button>
           </div>
         </div>
+        {this.renderDialog()}
       </form>
     );
   }
