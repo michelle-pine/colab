@@ -85,6 +85,7 @@ function rootReducer(state = getInitialState(), action) {
         projects: newProjects,
         user: newUser
       });
+
     case APPLY_FOR_PROJECT:
       newUser.myProjects.pending.push(action.payload);
 

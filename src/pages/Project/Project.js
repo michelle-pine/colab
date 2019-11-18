@@ -278,7 +278,7 @@ class Project extends React.Component {
               </div>
             </div>
             <div id="tags-container" className="project-tags col-md-6 col-12">
-            { 
+            {
               tagsCategories.map((category, i) => {
               let filteredTags = this.filterTagsByCategory(
                 convertedProject.tagsRich,
