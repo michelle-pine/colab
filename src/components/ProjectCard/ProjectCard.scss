@@ -18,6 +18,10 @@
       @include h3;
       text-decoration: none;
       min-width: 0;
+      #edit-link {
+        font-size: $body-size;
+        margin-left: 10px;
+      }
       .project-status {
         padding-top: 5px;
         font-size: 12px;
@@ -32,14 +36,14 @@
         @include go-button;
         text-decoration: none;
         text-transform: uppercase;
-      }  
+      }
       .project-card-button:hover {
         background: darken($primary-teal, 10);
       }
     }
 
   }
- 
+
 
   .project-card-author {
     padding: 15px 25px;

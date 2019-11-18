@@ -59,11 +59,11 @@ class Login extends React.Component {
               <div className="form-group row">
                 <div className="col-6">
                   <label htmlFor="user-first-name">First Name</label>
-                  <input name="firstname" type="text" className="form-control" id="user-first-name" />
+                  <input required name="firstname" type="text" className="form-control" id="user-first-name" />
                 </div>
                 <div className="col-6">
                   <label htmlFor="user-last-name">Last Name</label>
-                  <input name="lastname" type="text" className="form-control" id="user-last-name" />
+                  <input required name="lastname" type="text" className="form-control" id="user-last-name" />
                 </div>
               </div>
               <div className="form-group">
@@ -97,8 +97,8 @@ class Login extends React.Component {
                   <input className="form-check-input" id="business" type="checkbox" name="past-experience"/>
                   <label className="form-check-label" htmlFor="business">Business</label>
                 </div>
-              </fieldset>   
-    
+              </fieldset>
+
               <div className="form-group">
                 <button type="submit" className="go-button">Register</button>
               </div>

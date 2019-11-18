@@ -3,7 +3,8 @@ import "./Project.scss";
 import store from "../../store/index";
 import { projectUtils } from "../../utils/project_utils";
 import Tag from "../../components/Tag/Tag";
-import HelpDialog from '../../components/HelpDialog/HelpDialog'
+import HelpDialog from "../../components/HelpDialog/HelpDialog";
+import { Link } from "react-router-dom";
 
 import { applyForProject, cancelApplication } from "../../actions/index";
 const CANCEL_APPLICATION = "Cancel Application";
@@ -116,8 +117,7 @@ class Project extends React.Component {
           <i className="fa fa-chevron-left"></i> Back
         </a>
       );
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -127,12 +127,15 @@ class Project extends React.Component {
       this.props.history.push("/login");
     }
     let helpDesc = {
-      "Languages": "The coding languages used to implement a project (i.e. Java, Python, Javascript).",
-      "Technologies": "The non-coding language technologies used to implement this project.",
-      "Topics": "The genre of application of this project.",
-      "Difficulty": "The proficiency level in coding/design/business required to complete a project.",
-      "Positions": "The types of roles available for this project.",
-    }
+      Languages:
+        "The coding languages used to implement a project (i.e. Java, Python, Javascript).",
+      Technologies:
+        "The non-coding language technologies used to implement this project.",
+      Topics: "The genre of application of this project.",
+      Difficulty:
+        "The proficiency level in coding/design/business required to complete a project.",
+      Positions: "The types of roles available for this project."
+    };
     let project = this.getProject();
     let convertedProject = projectUtils.convertProject(project);
     let businessMembers = convertedProject.projectMembersExpanded[BUSINESS];
@@ -152,9 +155,21 @@ class Project extends React.Component {
         {this.renderBackButton()}
         <div className="row">
           <div className="project-info col-md-6 col-12">
+            <h2>
+              {convertedProject.name}{" "}
+              <span>
+                {convertedProject.creatorId === 999 ? (
+                  <Link
+                    id="edit-link"
+                    to={`/edit-project/${this.props.match.params.id}`}
+                  >
+                    Edit
+                  </Link>
+                ) : null}
+              </span>
+            </h2>
 
-            <h2>{convertedProject.name}</h2>
-              <div className="project-details">
+            <div className="project-details">
               <p>{convertedProject.description}</p>
               <p>
                 <a href="https://github.com/michelle-pine/colab">
@@ -169,8 +184,10 @@ class Project extends React.Component {
                 </p>
               ) : null}
 
-
-              <h3 id="position-header">Positions <HelpDialog message="The types of roles available for each project. You may apply for positions where the option is available."/></h3>
+              <h3 id="position-header">
+                Positions{" "}
+                <HelpDialog message="The types of roles available for each project. You may apply for positions where the option is available." />
+              </h3>
 
               {businessMembers.length !== 0 ||
               convertedProject.tags.indexOf(4) >= 0 ? (
@@ -274,12 +291,11 @@ class Project extends React.Component {
                     </button>
                   ) : null}
                 </div>
-                ) : null}
-              </div>
+              ) : null}
             </div>
-            <div id="tags-container" className="project-tags col-md-6 col-12">
-            { 
-              tagsCategories.map((category, i) => {
+          </div>
+          <div id="tags-container" className="project-tags col-md-6 col-12">
+            {tagsCategories.map((category, i) => {
               let filteredTags = this.filterTagsByCategory(
                 convertedProject.tagsRich,
                 category
@@ -287,7 +303,9 @@ class Project extends React.Component {
 
               return (
                 <div key={i}>
-                  <h4 className="category-header">{category} <HelpDialog message={helpDesc[category]} /></h4>
+                  <h4 className="category-header">
+                    {category} <HelpDialog message={helpDesc[category]} />
+                  </h4>
                   {filteredTags.map(tag => {
                     return <Tag tag={tag} key={tag.id} />;
                   })}

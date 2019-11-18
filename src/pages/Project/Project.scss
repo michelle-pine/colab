@@ -42,7 +42,7 @@ h4 {
       }
     }
 
-    
+
 
     .project-details {
       padding: 20px;
@@ -54,6 +54,11 @@ h4 {
     padding-left: 25px;
   }
 
+}
+
+#edit-link {
+  font-size: $body-size;
+  margin-left: 10px;
 }
 
 .category-header {
