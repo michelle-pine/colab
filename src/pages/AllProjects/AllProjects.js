@@ -53,7 +53,16 @@ class AllProjects extends React.Component {
     this.setState({searchValue: val});
   }
 
-  matchesSearch(name, description, author) {
+  searchTag(tags, regex) {
+    for (let tag of tags) {
+      if (tag.name.toUpperCase().match(regex))
+        return true;
+      else 
+        return false;
+    }
+  }
+
+  matchesSearch(name, description, author, tags) {
     let nameUpper = name.toUpperCase();
     let descriptionUpper = description.toUpperCase();
     let authorUpper = author.toUpperCase();
@@ -62,7 +71,8 @@ class AllProjects extends React.Component {
     let matchesName = nameUpper.match(regex);
     let matchesDescription = descriptionUpper.match(regex);
     let matchesAuthor = authorUpper.match(regex);
-    return matchesName || matchesDescription || matchesAuthor;
+    let matchesTag = this.searchTag(tags, regex);
+    return matchesName || matchesDescription || matchesAuthor || matchesTag;
   }
 
   renderProjects() {
@@ -80,7 +90,7 @@ class AllProjects extends React.Component {
     for (let i = 0; i < projects.length; i++) {
       if (selectedTags.length === 0 || this.commonElements(selectedTags, projects[i].tags) ) {
         let curProject = projectUtils.convertProject(projects[i]);
-        if (this.state.searchValue === "" || this.matchesSearch(curProject.name, curProject.description, curProject.author.firstname + curProject.author.lastname)) {
+        if (this.state.searchValue === "" || this.matchesSearch(curProject.name, curProject.description, curProject.author.firstname + curProject.author.lastname, curProject.tagsRich)) {
           renderedProjects.push(
             <ProjectCard key={i} projectId={projects[i].id} project={curProject} />
           );
@@ -106,6 +116,10 @@ class AllProjects extends React.Component {
   render() {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
+    }
+    let projects = this.renderProjects();
+    if (projects.length === 0) {
+      projects = <h3>No projects found.</h3>
     }
     return (
       <div className="all-projects">
@@ -203,7 +217,7 @@ class AllProjects extends React.Component {
           </div>
         </div>
         <div className="projects-container">
-          {this.renderProjects()}
+          {projects}
         </div>
       </div>
     );

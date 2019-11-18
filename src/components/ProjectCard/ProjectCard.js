@@ -32,9 +32,9 @@ class ProjectCard extends React.Component {
   partOfProject(user) {
     const projs = user.myProjects;
     const id = this.props.projectId;
-    console.log(projs);
     return this.filterById(projs.current, id) || this.filterById(projs.past, id) || this.filterById(projs.pending, id);
   }
+  
   renderProjectStatus() {
     const state = store.getState(); 
     const user = state.user;
