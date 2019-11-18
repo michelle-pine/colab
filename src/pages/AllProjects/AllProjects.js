@@ -57,9 +57,8 @@ class AllProjects extends React.Component {
     for (let tag of tags) {
       if (tag.name.toUpperCase().match(regex))
         return true;
-      else 
-        return false;
     }
+    return false;
   }
 
   matchesSearch(name, description, author, tags) {
