@@ -24,10 +24,6 @@ class Login extends React.Component {
         username: elements["user-email"].value,
         firstname: elements["user-first-name"].value,
         lastname: elements["user-last-name"].value,
-        frontend: elements["frontend"].checked,
-        backend: elements["backend"].checked,
-        design: elements["design"].checked,
-        business: elements["business"].checked,
         loggedIn: true,
         myProjects: {
           current: [],
@@ -58,47 +54,30 @@ class Login extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
                 <div className="col-6">
-                  <label htmlFor="user-first-name">First Name</label>
-                  <input name="firstname" type="text" className="form-control" id="user-first-name" />
+                  <label htmlFor="user-first-name">First Name&nbsp;<i className="fa fa-asterisk required-icon"></i></label>
+                  <input required name="firstname" type="text" className="form-control" id="user-first-name" />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="user-last-name">Last Name</label>
-                  <input name="lastname" type="text" className="form-control" id="user-last-name" />
+                  <label htmlFor="user-last-name">Last Name&nbsp;<i className="fa fa-asterisk required-icon"></i></label>
+                  <input required name="lastname" type="text" className="form-control" id="user-last-name" />
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="user-email">Email address</label>
+                <label htmlFor="user-email">Email address&nbsp;<i className="fa fa-asterisk required-icon"></i></label>
                 <input name="email" type="email" className="form-control" id="user-email" placeholder="name@example.com" />
               </div>
               <div className="form-group">
-                <label htmlFor="user-password">Password</label>
+                <label htmlFor="user-password">Password&nbsp;<i className="fa fa-asterisk required-icon"></i></label>
                 <input name="password" type="password" className={`form-control ${this.state.showError ? "errored" : ""}`} id="user-password"/>
               </div>
               <div className="form-group">
-                <label htmlFor="user-password-confirm">Confirm Password</label>
+                <label htmlFor="user-password-confirm">Confirm Password&nbsp;<i className="fa fa-asterisk required-icon"></i></label>
                 <input name="password-confirm" type="password" className={`form-control ${this.state.showError ? "errored" : ""}`} id="user-password-confirm"/>
               </div>
               {this.state.showError ? error : null}
-              <fieldset className="experience">
-                <legend>I have experience in:</legend>
-                <div className="form-check">
-                  <input className="form-check-input" id="frontend" type="checkbox" name="past-experience"/>
-                  <label className="form-check-label" htmlFor="frontend">Front-End Development</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" id="backend" type="checkbox" name="past-experience"/>
-                  <label className="form-check-label" htmlFor="backend">Back-End Development</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input"  id="design" type="checkbox" name="past-experience"/>
-                  <label className="form-check-label" htmlFor="design">Design</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" id="business" type="checkbox" name="past-experience"/>
-                  <label className="form-check-label" htmlFor="business">Business</label>
-                </div>
-              </fieldset>   
-    
+              <div className="form-group required-icon">
+                <i className="fa fa-asterisk required-icon"></i>&nbsp;Required
+              </div>
               <div className="form-group">
                 <button type="submit" className="go-button">Register</button>
               </div>

@@ -157,7 +157,7 @@ class CreateProject extends React.Component {
         <h2>1. General Info:</h2>
         <div className="create-project-inputs">
           <div className="form-group">
-            <label htmlFor="new-project-name">Project Name</label>
+            <label htmlFor="new-project-name">Project Name<i className="required-icon fa fa-asterisk"></i></label>
             <input type="text" onChange={this.onChangeProjectName} defaultValue={this.state.newProject.name} required className="form-control" id="new-project-name"/>
           </div>
           <div className="form-group">
@@ -172,11 +172,15 @@ class CreateProject extends React.Component {
             <label htmlFor="new-project-prototype"><i className="fa fa-link"></i>&nbsp;Link to Prototype <HelpDialog message="Paste the link to a folder or online platform that displays the prototype for this project."/></label>
             <input type="text" defaultValue={this.state.newProject.prototypeLink} className="form-control" id="new-project-prototype" placeholder="https://"/>
           </div>
+          <div className="form-group required-icon">
+            <i className="required-icon fa fa-asterisk"></i>&nbsp;Required
+          </div>
           <div className="form-group form-button-group">
             <button type="submit" className="go-button">Continue</button>
             <button onClick={() => this.props.history.push("/")} className="back-button">Cancel</button>
           </div>
         </div>
+
       </form>
     );
   }
