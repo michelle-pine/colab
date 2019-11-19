@@ -77,8 +77,13 @@ class ProjectCard extends React.Component {
           </div>
         </div>
         <div className="project-card-author">
-          by {this.props.project.author.firstname}{" "}
+          by {" "}
+          <Link
+              to={`/users/${this.props.project.creatorId}?goback=true`}
+          >
+          {this.props.project.author.firstname}{" "}
           {this.props.project.author.lastname}
+          </Link>
           <span className="project-card-timestamp">
             {timeAgo.format(this.props.project.createdAt)}
           </span>

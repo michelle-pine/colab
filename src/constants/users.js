@@ -2,7 +2,14 @@ export const users = {
   1: {
     firstname: "Taylor",
     lastname: "Taylorsen",
+    email: "taylor@example.com",
+    description: "I really like data.",
     frontend: false,
+    myProjects: {
+      current: [1],
+      pending: [],
+      past: [],
+    },
     backend: true,
     design: false,
     business: false,
@@ -10,6 +17,13 @@ export const users = {
   2: {
     firstname: "Lou",
     lastname: "Louis",
+    email: "lou@example.com",
+    description: "I really like coding.",
+    myProjects: {
+      current: [2],
+      pending: [],
+      past: [],
+    },
     frontend: false,
     backend: true,
     design: false,
@@ -17,6 +31,13 @@ export const users = {
   },
   3: {
     firstname: "Kyle",
+    myProjects: {
+      current: [3],
+      pending: [],
+      past: [],
+    },
+    email: "kyle@example.com",
+    description: "I really like comp sci.",
     lastname: "Kyleson",
     frontend: true,
     backend: false,
@@ -26,6 +47,13 @@ export const users = {
   4: {
     firstname: "Greg",
     lastname: "Gregsen",
+    myProjects: {
+      current: [4],
+      pending: [],
+      past: [],
+    },
+    email: "greg@example.com",
+    description: "I am Greg.",
     frontend: false,
     backend: false,
     design: true,

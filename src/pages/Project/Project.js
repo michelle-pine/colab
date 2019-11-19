@@ -28,8 +28,11 @@ class Project extends React.Component {
   }
   getProject() {
     const { id } = this.props.match.params;
-    let projects = store.getState().projects;
-    return projects[id];
+    let state = store.getState();
+    let projects = state.projects;
+    let project = projects[id];
+    project.user = state.users[project.creatorId];
+    return project;
   }
 
   filterTagsByCategory(tags, category) {
@@ -168,8 +171,15 @@ class Project extends React.Component {
                 ) : null}
               </span>
             </h2>
-
             <div className="project-details">
+              <p>          
+                by {" "}
+                <Link
+                  to={`/users/${project.creatorId}?goback=true`}
+                >
+                {project.user.firstname}{" "}{project.user.lastname}
+                </Link>
+              </p>
               <p>{convertedProject.description}</p>
               <p>
                 <a href="https://github.com/michelle-pine/colab">

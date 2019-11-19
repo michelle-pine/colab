@@ -1,0 +1,9 @@
+@import '../../index.scss';
+
+
+.back-link {
+  @include h4;
+  display: block;
+  margin-bottom: 15px;
+  color: $primary-orange;
+}

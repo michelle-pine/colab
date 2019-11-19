@@ -14,6 +14,7 @@ import CreateProject from './pages/CreateProject/CreateProject';
 import MyProfile from './pages/MyProfile/MyProfile';
 import Project from './pages/Project/Project';
 import Login from './pages/Login/Login';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 //stores
 import store from './store/index'
@@ -34,6 +35,7 @@ const routing = (
           <Route path="/create-project" component={CreateProject} />
           <Route exact path="/edit-project/:id" component={CreateProject} />
           <Route exact path="/projects/:id" component={Project} />
+          <Route exact path="/users/:id" component={UserProfile} />
           <Route path="/login" component={Login} />
         </div>
       </Router>
