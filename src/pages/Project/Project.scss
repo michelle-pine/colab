@@ -14,6 +14,21 @@ h4 {
 #project-container {
   padding: 15px 30px;
 
+  #top-links-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #delete-link {
+    @include h4;
+    display: block;
+    margin-bottom: 15px;
+    color: $red;
+    margin-left: auto;
+    order: 2;
+  }
+
   .back-link {
     @include h4;
     display: block;
@@ -42,18 +57,14 @@ h4 {
       }
     }
 
-
-
     .project-details {
       padding: 20px;
     }
-
   }
 
   #tags-container {
     padding-left: 25px;
   }
-
 }
 
 #edit-link {
@@ -75,6 +86,6 @@ h4 {
 
 @media screen and (max-width: $breakpoint-default) {
   #tags-container {
-    padding-left: 0px!important;
+    padding-left: 0px !important;
   }
 }

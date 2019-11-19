@@ -5,6 +5,7 @@
   "homepage": "https://michelle-pine.github.io/colab",
   "dependencies": {
     "@khanacademy/react-multi-select": "^0.3.3",
+    "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "gh-pages": "^2.1.1",
     "javascript-time-ago": "^2.0.3",

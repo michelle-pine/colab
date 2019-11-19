@@ -2,8 +2,11 @@ import {
   REGISTER_USER,
   ADD_PROJECT,
   APPLY_FOR_PROJECT,
-  CANCEL_APPLICATION
+  CANCEL_APPLICATION,
+  DELETE_PROJECT
 } from "../constants/action-types";
+
+import { BUSINESS, FRONT_END, BACK_END, DESIGN } from "../constants/common";
 
 import { cookieUtils } from "../utils/cookie_utils";
 import { users } from "../constants/users";
@@ -33,54 +36,78 @@ function getInitialState() {
 
 function rootReducer(state = getInitialState(), action) {
   const newUser = Object.assign({}, state.user);
+  const newProjects = Object.assign({}, state.projects);
+
   switch (action.type) {
     case REGISTER_USER:
       let allUsers = Object.assign({}, state.users);
       allUsers[999] = action.payload;
       return Object.assign({}, state, {
         user: action.payload,
-        users: allUsers,
+        users: allUsers
       });
     case ADD_PROJECT:
-      const newProjects = Object.assign({}, state.projects);
       newProjects[action.payload.id] = action.payload.project;
       let members = action.payload.project.projectMembers;
-      if (members["business"].indexOf(999) >= 0) {
+      if (members[BUSINESS].indexOf(999) >= 0) {
         newUser.myProjects.current.push({
           projectId: action.payload.id,
-          position: "business"
+          position: BUSINESS
         });
       }
-      if (members["design"].indexOf(999) >= 0) {
+      if (members[DESIGN].indexOf(999) >= 0) {
         newUser.myProjects.current.push({
           projectId: action.payload.id,
-          position: "design"
+          position: DESIGN
         });
       }
-      if (members["front-end"].indexOf(999) >= 0) {
+      if (members[FRONT_END].indexOf(999) >= 0) {
         newUser.myProjects.current.push({
           projectId: action.payload.id,
-          position: "front-end"
+          position: FRONT_END
         });
       }
-      if (members["back-end"].indexOf(999) >= 0) {
+      if (members[BACK_END].indexOf(999) >= 0) {
         newUser.myProjects.current.push({
           projectId: action.payload.id,
-          position: "back-end"
+          position: BACK_END
         });
       }
 
       if (
-        members["business"].indexOf(999) < 0 &&
-        members["design"].indexOf(999) < 0 &&
-        members["front-end"].indexOf(999) < 0 &&
-        members["back-end"].indexOf(999) < 0
+        members[BUSINESS].indexOf(999) < 0 &&
+        members[DESIGN].indexOf(999) < 0 &&
+        members[FRONT_END].indexOf(999) < 0 &&
+        members[BACK_END].indexOf(999) < 0
       ) {
         newUser.myProjects.current.push({
           projectId: action.payload.id,
           position: ""
         });
       }
+      return Object.assign({}, state, {
+        projects: newProjects,
+        user: newUser
+      });
+
+    case DELETE_PROJECT:
+      delete newProjects[action.payload.id];
+      newUser.myProjects.current.forEach((project, idx) => {
+        if (project.projectId == action.payload.id) {
+          newUser.myProjects.current.splice(idx, 1);
+        }
+      });
+
+      newUser.myProjects.past.forEach((project, idx) => {
+        if (project.projectId == action.payload.id)
+          newUser.myProjects.past.splice(idx, 1);
+      });
+
+      newUser.myProjects.pending.forEach((project, idx) => {
+        if (project.projectId == action.payload.id)
+          newUser.myProjects.pending.splice(idx, 1);
+      });
+
       return Object.assign({}, state, {
         projects: newProjects,
         user: newUser

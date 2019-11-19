@@ -46,7 +46,6 @@ class MyProfile extends React.Component {
 
   componentDidMount() {
     let user = userUtils.convertUser();
-    console.log(user)
 
     let current = []
     user.myProjectsExpanded.current.forEach(project => {
