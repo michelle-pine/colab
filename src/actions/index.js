@@ -1,4 +1,9 @@
-import { REGISTER_USER, ADD_PROJECT, APPLY_FOR_PROJECT, CANCEL_APPLICATION } from "../constants/action-types";
+import {
+  REGISTER_USER,
+  ADD_PROJECT,
+  APPLY_FOR_PROJECT,
+  CANCEL_APPLICATION
+} from "../constants/action-types";
 
 export function registerUser(payload) {
   return { type: REGISTER_USER, payload };

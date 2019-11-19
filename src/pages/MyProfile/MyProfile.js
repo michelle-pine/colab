@@ -46,6 +46,7 @@ class MyProfile extends React.Component {
 
   componentDidMount() {
     let user = userUtils.convertUser();
+    console.log(user)
 
     let current = []
     user.myProjectsExpanded.current.forEach(project => {
@@ -106,7 +107,7 @@ class MyProfile extends React.Component {
 
     return (
       <div id="profile-page">
-        
+
         <div className="user-info">
           <h2>
             <i className="fa fa-user"></i>&nbsp;
@@ -139,7 +140,7 @@ class MyProfile extends React.Component {
               </button>
             </div>
 
-           
+
 
             {/* links */}
             <h3>Links <HelpDialog message="Enter comma separated links to personal websites, LinkedIn, or projects."/></h3>
