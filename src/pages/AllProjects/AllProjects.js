@@ -62,10 +62,15 @@ class AllProjects extends React.Component {
   }
 
   matchesSearch(name, description, author, tags) {
+    let specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+
     let nameUpper = name.toUpperCase();
     let descriptionUpper = description.toUpperCase();
     let authorUpper = author.toUpperCase();
     let string2 = this.state.searchValue.toUpperCase();
+    for (var i = 0; i < specialChars.length; i++) {
+      string2 = string2.replace(new RegExp("\\" + specialChars[i], "gi"), "");
+    }
     let regex = new RegExp( string2, 'g' );
     let matchesName = nameUpper.match(regex);
     let matchesDescription = descriptionUpper.match(regex);
