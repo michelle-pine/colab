@@ -146,6 +146,16 @@ class Project extends React.Component {
     return null;
   }
 
+  renderAlternateState(project) {
+    console.log(project)
+    if (project.creatorId === 999) {
+      return <div>Awaiting Applications</div>;
+    }
+    else {
+      return null;
+    }
+  }
+
   render() {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
@@ -247,7 +257,7 @@ class Project extends React.Component {
                     >
                       {this.state.businessButtonText}
                     </button>
-                  ) : <div>Awaiting Applications</div>}
+                  ) : this.renderAlternateState(convertedProject)}
                 </div>
               ) : null}
 
@@ -275,7 +285,7 @@ class Project extends React.Component {
                     >
                       {this.state.backendButtonText}
                     </button>
-                  ) : <div>Awaiting Applications</div>}
+                  ) : this.renderAlternateState(convertedProject)}
                 </div>
               ) : null}
 
@@ -301,7 +311,7 @@ class Project extends React.Component {
                     >
                       {this.state.frontendButtonText}
                     </button>
-                  ) : <div>Awaiting Applications</div>}
+                  ) : this.renderAlternateState(convertedProject)}
                 </div>
               ) : null}
 
@@ -329,7 +339,7 @@ class Project extends React.Component {
                     >
                       {this.state.designButtonText}
                     </button>
-                  ) : <div>Awaiting Applications</div>}
+                  ) : this.renderAlternateState(convertedProject)}
                 </div>
               ) : null}
             </div>
