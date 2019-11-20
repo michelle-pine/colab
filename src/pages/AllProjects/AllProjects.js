@@ -86,6 +86,7 @@ class AllProjects extends React.Component {
 
   onSearch(e) {
     let val = e.target.value;
+    this.props.history.push(`/`);
     this.setState({searchValue: val});
   }
 
@@ -221,6 +222,7 @@ class AllProjects extends React.Component {
                   selected={this.state.selectedPositions}
                   onSelectedChanged={function (selected) {
                     this.setState({selectedPositions: selected})
+                    this.props.history.push(`/`);
                   }.bind(this)}
                   overrideStrings={{
                     selectSomeItems: "Position Tags",
@@ -237,6 +239,7 @@ class AllProjects extends React.Component {
                   selected={this.state.selectedLanguages}
                   onSelectedChanged={function (selected) {
                     this.setState({selectedLanguages: selected})
+                    this.props.history.push(`/`);
                   }.bind(this)}
                   overrideStrings={{
                     selectSomeItems: "Language Tags",
@@ -253,6 +256,7 @@ class AllProjects extends React.Component {
                   selected={this.state.selectedTechnologies}
                   onSelectedChanged={function (selected) {
                     this.setState({selectedTechnologies: selected})
+                    this.props.history.push(`/`);
                   }.bind(this)}
                   overrideStrings={{
                     selectSomeItems: "Technology Tags",
@@ -269,6 +273,7 @@ class AllProjects extends React.Component {
                   selected={this.state.selectedTopics}
                   onSelectedChanged={function (selected) {
                     this.setState({selectedTopics: selected})
+                    this.props.history.push(`/`);
                   }.bind(this)}
                   overrideStrings={{
                     selectSomeItems: "Topic Tags",
@@ -285,6 +290,7 @@ class AllProjects extends React.Component {
                   selected={this.state.selectedDifficulty}
                   onSelectedChanged={function (selected) {
                     this.setState({selectedDifficulty: selected})
+                    this.props.history.push(`/`);
                   }.bind(this)}
                   overrideStrings={{
                     selectSomeItems: "Difficulty Tags",
