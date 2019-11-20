@@ -33,7 +33,7 @@ class Tag extends React.Component {
   render () {
     return (
       <button onClick={this.props.onTagClick || this.alternateClick} data-id={this.props.tag.id} className={`project-tag ${this.getColor()}`}>
-        {this.props.tag.name}
+        <span className="sr-only">Project Tag: </span>{this.props.tag.name}
       </button>
     );
   }
