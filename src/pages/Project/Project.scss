@@ -24,7 +24,8 @@ h4 {
     @include h4;
     display: block;
     margin-bottom: 15px;
-    color: $red;
+    background: lighten($red, 60);
+    color:$red;
     margin-left: auto;
     order: 2;
   }

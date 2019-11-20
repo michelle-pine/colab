@@ -130,6 +130,7 @@ class Project extends React.Component {
   }
 
   handleDeleteClicked = () => {
+    this.props.history.push("/");
     let { id } = this.props.match.params;
     const payload = { id: id };
     store.dispatch(deleteProject(payload));
@@ -138,9 +139,16 @@ class Project extends React.Component {
   renderDeleteButton() {
     if (this.getProject().creatorId == 999) {
       return (
-        <a id="delete-link" onClick={this.handleDeleteClicked} href="#">
-          <i className="fa fa-minus-circle"></i> Delete
-        </a>
+        <button
+          id="delete-link"
+          data-toggle="modal"
+          data-target="#myModal"
+          type="button"
+          href="#"
+          className="back-button"
+        >
+          <i class="fa fa-minus-circle"></i> Delete
+        </button>
       );
     }
     return null;
@@ -190,6 +198,40 @@ class Project extends React.Component {
           {this.renderBackButton()}
           {this.renderDeleteButton()}
         </div>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  Are you sure you want to delete this project? All of the data
+                  will be lost.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  className="back-button"
+                  data-dismiss="modal"
+                  onClick={this.handleDeleteClicked}
+                >
+                  Delete project
+                </button>
+                <button
+                  type="button"
+                  className="go-button"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="project-info col-md-6 col-12">
             <h2>
@@ -206,12 +248,10 @@ class Project extends React.Component {
               </span>
             </h2>
             <div className="project-details">
-              <p>          
-                by {" "}
-                <Link
-                  to={`/users/${project.creatorId}?goback=true`}
-                >
-                {project.user.firstname}{" "}{project.user.lastname}
+              <p>
+                by{" "}
+                <Link to={`/users/${project.creatorId}?goback=true`}>
+                  {project.user.firstname} {project.user.lastname}
                 </Link>
               </p>
               <p>{convertedProject.description}</p>
