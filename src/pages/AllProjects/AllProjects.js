@@ -53,6 +53,28 @@ class AllProjects extends React.Component {
     }
   }
 
+  anySelections() {
+    return this.state.selectedDifficulty.length > 0 || this.state.selectedLanguages.length > 0 || this.state.selectedPositions.length > 0 || this.state.selectedTechnologies.length > 0 || this.state.selectedTopics.length > 0;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      console.log("updated");
+      let query = this.props.location.search
+      
+      if (query && query.substring(5,query.length) === "none") {
+        this.setState({
+          selectedLanguages: [],
+          selectedTechnologies: [],
+          selectedPositions: [],
+          selectedTopics: [],
+          selectedDifficulty: [],
+          searchValue: "",
+        });
+      }
+    }
+  }
+
   commonElements(arr1, arr2) {
     for (let tag of arr1) {
       if (arr2.indexOf(tag) < 0) {
@@ -99,6 +121,7 @@ class AllProjects extends React.Component {
   }
 
   onSelectId(id) {
+    this.props.history.push(`/?tag=${id}`)
     let positions = [];
     let languages = [];
     let technologies = [];

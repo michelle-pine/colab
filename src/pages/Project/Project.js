@@ -139,7 +139,7 @@ class Project extends React.Component {
     if (this.getProject().creatorId == 999) {
       return (
         <a id="delete-link" onClick={this.handleDeleteClicked} href="#">
-          <i class="fa fa-minus-circle"></i> Delete
+          <i className="fa fa-minus-circle"></i> Delete
         </a>
       );
     }
