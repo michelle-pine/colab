@@ -6,7 +6,11 @@ import Tag from "../../components/Tag/Tag";
 import HelpDialog from "../../components/HelpDialog/HelpDialog";
 import { Link } from "react-router-dom";
 
-import { applyForProject, cancelApplication, deleteProject } from "../../actions/index";
+import {
+  applyForProject,
+  cancelApplication,
+  deleteProject
+} from "../../actions/index";
 const CANCEL_APPLICATION = "Cancel Application";
 const APPLY = "Apply";
 const BUSINESS = "business";
@@ -126,7 +130,7 @@ class Project extends React.Component {
     let { id } = this.props.match.params;
     const payload = { id: id };
     store.dispatch(deleteProject(payload));
-  }
+  };
 
   renderDeleteButton() {
     if (this.getProject().creatorId == 999) {

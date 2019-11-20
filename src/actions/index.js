@@ -3,7 +3,8 @@ import {
   ADD_PROJECT,
   APPLY_FOR_PROJECT,
   CANCEL_APPLICATION,
-  DELETE_PROJECT
+  DELETE_PROJECT,
+  EDIT_PROJECT
 } from "../constants/action-types";
 
 export function registerUser(payload) {
@@ -24,4 +25,8 @@ export function cancelApplication(payload) {
 
 export function deleteProject(payload) {
   return { type: DELETE_PROJECT, payload };
+}
+
+export function editProject(payload) {
+  return { type: EDIT_PROJECT, payload };
 }
