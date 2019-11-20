@@ -71,6 +71,7 @@ class AllProjects extends React.Component {
           selectedDifficulty: [],
           searchValue: "",
         });
+        this.searchBox.value = "";
       }
     }
   }
