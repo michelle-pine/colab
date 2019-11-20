@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "583003df733245c184e53843d094754a",
+    "revision": "caa5c42cf64fbc17e8d38706e2b33421",
     "url": "/colab/index.html"
   },
   {
-    "revision": "0be31f7a82739ad365c9",
-    "url": "/colab/static/css/2.c94544ad.chunk.css"
+    "revision": "aad5d265004bbcd9667f",
+    "url": "/colab/static/css/2.b708a4dd.chunk.css"
   },
   {
-    "revision": "1fa8f6a49c5c4b3e078b",
-    "url": "/colab/static/css/main.9d9b78ad.chunk.css"
+    "revision": "2431df786619206d85e7",
+    "url": "/colab/static/css/main.f15282da.chunk.css"
   },
   {
-    "revision": "0be31f7a82739ad365c9",
-    "url": "/colab/static/js/2.0d6896dc.chunk.js"
+    "revision": "aad5d265004bbcd9667f",
+    "url": "/colab/static/js/2.7da77de0.chunk.js"
   },
   {
-    "revision": "1fa8f6a49c5c4b3e078b",
-    "url": "/colab/static/js/main.8638b13c.chunk.js"
+    "revision": "2431df786619206d85e7",
+    "url": "/colab/static/js/main.9d57e1b8.chunk.js"
   },
   {
     "revision": "1749d5975afadb7409d3",
