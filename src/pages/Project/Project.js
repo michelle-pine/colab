@@ -6,7 +6,11 @@ import Tag from "../../components/Tag/Tag";
 import HelpDialog from "../../components/HelpDialog/HelpDialog";
 import { Link } from "react-router-dom";
 
-import { applyForProject, cancelApplication } from "../../actions/index";
+import {
+  applyForProject,
+  cancelApplication,
+  deleteProject
+} from "../../actions/index";
 const CANCEL_APPLICATION = "Cancel Application";
 const APPLY = "Apply";
 const BUSINESS = "business";
@@ -125,6 +129,23 @@ class Project extends React.Component {
     }
   }
 
+  handleDeleteClicked = () => {
+    let { id } = this.props.match.params;
+    const payload = { id: id };
+    store.dispatch(deleteProject(payload));
+  };
+
+  renderDeleteButton() {
+    if (this.getProject().creatorId == 999) {
+      return (
+        <a id="delete-link" onClick={this.handleDeleteClicked} href="#">
+          <i class="fa fa-minus-circle"></i> Delete
+        </a>
+      );
+    }
+    return null;
+  }
+
   render() {
     if (!store.getState().user.loggedIn) {
       this.props.history.push("/login");
@@ -155,7 +176,10 @@ class Project extends React.Component {
 
     return (
       <div id="project-container">
-        {this.renderBackButton()}
+        <div id="top-links-container">
+          {this.renderBackButton()}
+          {this.renderDeleteButton()}
+        </div>
         <div className="row">
           <div className="project-info col-md-6 col-12">
             <h2>

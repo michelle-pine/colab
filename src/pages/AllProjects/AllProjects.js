@@ -139,7 +139,7 @@ class AllProjects extends React.Component {
     let selectedTags = this.state.selectedPositions.concat(this.state.selectedLanguages).concat(this.state.selectedTechnologies).concat(this.state.selectedTopics).concat(this.state.selectedDifficulty);
     selectedTags = selectedTags.map((tag) => parseInt(tag));
     let projects = [];
-    for (let i in projectsObj) { 
+    for (let i in projectsObj) {
       let project = Object.assign({}, projectsObj[i]);
       project.id = i;
       projects.push(project);

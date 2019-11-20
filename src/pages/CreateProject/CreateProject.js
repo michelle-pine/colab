@@ -7,7 +7,7 @@ import HelpDialog from "../../components/HelpDialog/HelpDialog";
 
 //stores
 import store from "../../store/index";
-import { addProject } from "../../actions/index";
+import { addProject, editProject } from "../../actions/index";
 
 import {
   BUSINESS,
@@ -95,15 +95,16 @@ class CreateProject extends React.Component {
       let topics = [];
       let stepTwo = {};
       let tags = store.getState().tags;
-      let project = store.getState().projects[id];
+      let project = Object.assign({}, store.getState().projects[id]);
       let curProject = this.state.newProject;
       let difficulty = "";
 
+      curProject.projectId = id;
       curProject.name = project.name;
       curProject.description = project.description;
       curProject.githubLink = project.githubLink;
       curProject.prototypeLink = project.prototypeLink;
-      curProject.projectMembers = project.projectMembers;
+      curProject.projectMembers =  Object.assign({}, project.projectMembers);
       curProject.tags = project.tags;
 
       curProject.tags.forEach(tagId => {
@@ -250,9 +251,12 @@ class CreateProject extends React.Component {
     curProject.creatorId = 999;
     curProject.createdAt = Date.now();
 
+    let payload;
     let id;
     if (this.state.isEditing) {
-      id = this.props.match.params.id;
+      id = this.props.match.params.id
+      payload = { id: id, project: curProject };
+      store.dispatch(editProject(payload));
     } else {
       id = 0;
       while (true) {
@@ -261,9 +265,9 @@ class CreateProject extends React.Component {
         }
         id++;
       }
+      payload = { id: id, project: curProject };
+      store.dispatch(addProject(payload));
     }
-    let payload = { id: id, project: curProject };
-    store.dispatch(addProject(payload));
 
     this.props.history.push(`/projects/${id}`);
     this.setState({ stepThree: e.target.elements });

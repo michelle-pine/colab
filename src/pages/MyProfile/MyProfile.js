@@ -5,6 +5,7 @@ import ProjectPreview from "../../components/ProjectPreview";
 import HelpDialog from '../../components/HelpDialog/HelpDialog'
 import store from "../../store/index";
 import { userUtils } from "../../utils/user_utils";
+import { updateDescription, updateLinks } from "../../actions/index";
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -25,6 +26,10 @@ class MyProfile extends React.Component {
   }
 
   handleEditDescriptionClicked = () => {
+    if (this.state.editingDescription) {
+      let payload = { description: this.state.description };
+      store.dispatch(updateDescription(payload));
+    }
     this.setState({ editingDescription: !this.state.editingDescription });
   };
 
@@ -33,6 +38,10 @@ class MyProfile extends React.Component {
   };
 
   handleEditLinksClicked = () => {
+    if (this.state.editingLinks) {
+      let payload = { links: this.state.links };
+      store.dispatch(updateLinks(payload));
+    }
     this.setState({
       editingLinks: !this.state.editingLinks
     });
@@ -46,7 +55,14 @@ class MyProfile extends React.Component {
 
   componentDidMount() {
     let user = userUtils.convertUser();
-    console.log(user)
+
+    if (user.description) {
+      this.setState({description: user.description})
+    }
+
+    if (user.links) {
+      this.setState({links: user.links})
+    }
 
     let current = []
     user.myProjectsExpanded.current.forEach(project => {
