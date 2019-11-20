@@ -4,7 +4,9 @@ import {
   APPLY_FOR_PROJECT,
   CANCEL_APPLICATION,
   DELETE_PROJECT,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  UPDATE_DESCRIPTION,
+  UPDATE_LINKS
 } from "../constants/action-types";
 
 export function registerUser(payload) {
@@ -29,4 +31,12 @@ export function deleteProject(payload) {
 
 export function editProject(payload) {
   return { type: EDIT_PROJECT, payload };
+}
+
+export function updateDescription(payload) {
+  return { type: UPDATE_DESCRIPTION, payload };
+}
+
+export function updateLinks(payload) {
+  return { type: UPDATE_LINKS, payload };
 }

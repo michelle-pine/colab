@@ -4,7 +4,9 @@ import {
   APPLY_FOR_PROJECT,
   CANCEL_APPLICATION,
   DELETE_PROJECT,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  UPDATE_DESCRIPTION,
+  UPDATE_LINKS
 } from "../constants/action-types";
 
 import { BUSINESS, FRONT_END, BACK_END, DESIGN } from "../constants/common";
@@ -143,15 +145,13 @@ function rootReducer(state = getInitialState(), action) {
 
       let past = [];
       newUser.myProjects.past.forEach((project, idx) => {
-        if (!(project.projectId == action.payload.id))
-         past.push(project);
+        if (!(project.projectId == action.payload.id)) past.push(project);
       });
       newUser.myProjects.past = past;
 
       let pending = [];
       newUser.myProjects.pending.forEach((project, idx) => {
-        if (!(project.projectId == action.payload.id))
-          pending.push(project)
+        if (!(project.projectId == action.payload.id)) pending.push(project);
       });
       newUser.myProjects.pending = pending;
 
@@ -176,6 +176,18 @@ function rootReducer(state = getInitialState(), action) {
           return;
         }
       });
+      return Object.assign({}, state, {
+        user: newUser
+      });
+
+    case UPDATE_DESCRIPTION:
+      newUser.description = action.payload.description;
+      return Object.assign({}, state, {
+        user: newUser
+      });
+
+    case UPDATE_LINKS:
+      newUser.links = action.payload.links;
       return Object.assign({}, state, {
         user: newUser
       });
