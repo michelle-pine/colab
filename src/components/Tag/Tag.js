@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Tag.scss';
 
+
 class Tag extends React.Component {
+  constructor(props) {
+    super(props);
+    this.alternateClick = this.alternateClick.bind(this);
+  }
   getColor() {
     switch (this.props.tag.type) {
       case "Positions":
@@ -20,17 +25,24 @@ class Tag extends React.Component {
     }
   }
 
+  alternateClick(e) {
+    console.log(this.props);
+    this.props.history.push(`/?tag=${this.props.tag.id}`);
+  }
+
   render () {
     return (
-      <div className={`project-tag ${this.getColor()}`}>
-        {this.props.tag.name}
-      </div>
+      <button onClick={this.props.onTagClick || this.alternateClick} data-id={this.props.tag.id} className={`project-tag ${this.getColor()}`}>
+        <span className="sr-only">Project Tag: </span>{this.props.tag.name}
+      </button>
     );
   }
 };
 
 Tag.propTypes = {
   tag: PropTypes.object,
+  onTagClick: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default Tag;

@@ -149,3 +149,8 @@ a:hover {
     padding-bottom: 10px;
   }
 }
+
+a:not([href]):not([tabindex]) {
+  color: initial;
+  text-decoration: initial;
+}

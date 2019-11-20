@@ -24,7 +24,7 @@ class ProjectCard extends React.Component {
     let renderedTags = [];
     tags = tags.sort((a, b) => (order[a.type] < order[b.type] ? -1 : 1));
     for (let tag of tags) {
-      renderedTags.push(<Tag tag={tag} key={tag.id} />);
+      renderedTags.push(<Tag tag={tag} history={this.props.history} onTagClick={this.props.onTagClick} key={tag.id} />);
     }
     return renderedTags;
   }
@@ -99,7 +99,9 @@ class ProjectCard extends React.Component {
 
 ProjectCard.defaultProps = {
   project: PropTypes.object,
-  projectId: PropTypes.number
+  projectId: PropTypes.number,
+  onTagClick: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default ProjectCard;

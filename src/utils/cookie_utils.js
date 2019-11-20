@@ -23,6 +23,7 @@ export const cookieUtils = {
       username: cookies.get("username"),
       password: cookies.get("password"),
       firstname: cookies.get("firstname"),
+      lastname: cookies.get("lastname"),
       loggedIn: cookies.get("loggedIn") === "true",
       myProjects: {
         current: [],

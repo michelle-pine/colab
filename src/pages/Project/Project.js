@@ -120,7 +120,7 @@ class Project extends React.Component {
     const goBack = this.props.location.search.includes("goback");
     if (goBack) {
       return (
-        <a className="back-link" onClick={this.goBack} href="#">
+        <a className="back-link" onClick={this.goBack} >
           <i className="fa fa-chevron-left"></i> Back
         </a>
       );
@@ -270,11 +270,13 @@ class Project extends React.Component {
                   {businessMembers.map(member => {
                     return (
                       <p key={member.id}>
-                        {member.firstname} {member.lastname}
+                        <Link to={`/users/${member.id}?goback=true`}>
+                          {member.firstname} {member.lastname}
+                        </Link>
                       </p>
                     );
                   })}
-                  {convertedProject.tags.indexOf(4) >= 0 ? (
+                  {convertedProject.tags.indexOf(4) >= 0 && convertedProject.creatorId !== 999? (
                     <button
                       className={
                         this.state.businessButtonText === APPLY
@@ -285,7 +287,7 @@ class Project extends React.Component {
                     >
                       {this.state.businessButtonText}
                     </button>
-                  ) : null}
+                  ) : <div>Awaiting Applications</div>}
                 </div>
               ) : null}
 
@@ -296,11 +298,13 @@ class Project extends React.Component {
                   {backendMembers.map(member => {
                     return (
                       <p key={member.id}>
-                        {member.firstname} {member.lastname}
+                        <Link to={`/users/${member.id}?goback=true`}>
+                          {member.firstname} {member.lastname}
+                        </Link>
                       </p>
                     );
                   })}
-                  {convertedProject.tags.indexOf(2) >= 0 ? (
+                  {convertedProject.tags.indexOf(2) >= 0 && convertedProject.creatorId !== 999 ? (
                     <button
                       className={
                         this.state.backendButtonText === APPLY
@@ -311,7 +315,7 @@ class Project extends React.Component {
                     >
                       {this.state.backendButtonText}
                     </button>
-                  ) : null}
+                  ) : <div>Awaiting Applications</div>}
                 </div>
               ) : null}
 
@@ -321,12 +325,12 @@ class Project extends React.Component {
                   <h4>Front-end</h4>
                   {frontendMembers.map(member => {
                     return (
-                      <p key={member.id}>
+                      <Link to={`/users/${member.id}?goback=true`}>
                         {member.firstname} {member.lastname}
-                      </p>
+                      </Link>
                     );
                   })}
-                  {convertedProject.tags.indexOf(1) >= 0 ? (
+                  {convertedProject.tags.indexOf(1) >= 0 && convertedProject.creatorId !== 999 ? (
                     <button
                       onClick={this.handleApplyFrontendClicked}
                       className={
@@ -337,7 +341,7 @@ class Project extends React.Component {
                     >
                       {this.state.frontendButtonText}
                     </button>
-                  ) : null}
+                  ) : <div>Awaiting Applications</div>}
                 </div>
               ) : null}
 
@@ -348,11 +352,13 @@ class Project extends React.Component {
                   {designMembers.map(member => {
                     return (
                       <p key={member.id}>
-                        {member.firstname} {member.lastname}
+                        <Link to={`/users/${member.id}?goback=true`}>
+                          {member.firstname} {member.lastname}
+                        </Link>
                       </p>
                     );
                   })}
-                  {convertedProject.tags.indexOf(3) >= 0 ? (
+                  {convertedProject.tags.indexOf(3) >= 0 && convertedProject.creatorId !== 999 ? (
                     <button
                       onClick={this.handleApplyDesignClicked}
                       className={
@@ -363,7 +369,7 @@ class Project extends React.Component {
                     >
                       {this.state.designButtonText}
                     </button>
-                  ) : null}
+                  ) : <div>Awaiting Applications</div>}
                 </div>
               ) : null}
             </div>
@@ -381,7 +387,7 @@ class Project extends React.Component {
                     {category} <HelpDialog message={helpDesc[category]} />
                   </h4>
                   {filteredTags.map(tag => {
-                    return <Tag tag={tag} key={tag.id} />;
+                    return <Tag tag={tag} history={this.props.history} key={tag.id} />;
                   })}
                 </div>
               );

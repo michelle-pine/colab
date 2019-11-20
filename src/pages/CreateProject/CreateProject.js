@@ -420,21 +420,21 @@ class CreateProject extends React.Component {
 
   renderDialog() {
     return (
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
+      <div id="myModal" className="modal fade" role="dialog">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <button type="button" className="close" data-dismiss="modal">
                 &times;
               </button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <p>
                 Are you sure you want to cancel? The unsaved changes will be
                 lost.
               </p>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
                 className="back-button"
