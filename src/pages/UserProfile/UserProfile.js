@@ -7,6 +7,11 @@ import store from "../../store/index";
 import MyProfile from '../../pages/MyProfile/MyProfile';
 
 class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
   getUser() {
     const { id } = this.props.match.params;
     let users = store.getState().users;
@@ -26,11 +31,15 @@ class UserProfile extends React.Component {
     return newProjects;
   }
 
+  goBack(e) {
+    this.props.history.goBack();
+  }
+
   renderBackButton() {
     const goBack = this.props.location.search.includes("goback");
     if (goBack) {
       return (
-        <a className="back-link" onClick={this.goBack} href="#">
+        <a className="back-link" onClick={this.goBack}>
           <i className="fa fa-chevron-left"></i> Back
         </a>
       );

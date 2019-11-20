@@ -18,7 +18,12 @@ h4 {
     @include h4;
     display: block;
     margin-bottom: 15px;
-    color: $primary-orange;
+    color: $primary-orange!important;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline!important;
+    }
   }
 
   .project-info {

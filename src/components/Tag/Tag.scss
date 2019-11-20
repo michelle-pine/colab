@@ -9,29 +9,31 @@
   border-radius: 5px;
   padding: 5px;
   background: $white;
+  cursor: pointer;
+  @include shadow;
 }
 
 .tag-yellow {
-  color: $yellow;
-  border-color: $yellow;
+  color: $yellow!important;
+  border-color: $yellow!important;
 }
 
 .tag-orange {
-  color: $primary-orange;
-  border-color: $primary-orange;
+  color: $primary-orange!important;
+  border-color: $primary-orange!important;
 }
 
 .tag-purple {
-  color: $purple;
-  border-color: $purple;
+  color: $purple!important;
+  border-color: $purple!important;
 }
 
 .tag-grey {
-  color: $dark-grey;
-  border-color: $dark-grey;
+  color: $dark-grey!important;
+  border-color: $dark-grey!important;
 }
 
 .tag-red {
-  color: $red;
-  border-color: $red;
+  color: $red!important;
+  border-color: $red!important;
 }

@@ -21,6 +21,9 @@ class AllProjects extends React.Component {
     const tags = Object.keys(storeTags.tags).map(function (key) {
       return { label: storeTags.tags[key]["name"] , value: key, type: storeTags.tags[key]["type"]};
     });
+    this.onTagClick = this.onTagClick.bind(this);
+    this.onSelectId = this.onSelectId.bind(this);
+  
     this.state = {
       allProjects: store.getState().projects,
       selectedLanguages: [],
@@ -37,6 +40,17 @@ class AllProjects extends React.Component {
     }
     this.clearFilters = this.clearFilters.bind(this);
     this.onSearch = this.onSearch.bind(this);
+    this.onSelectId = this.onSelectId.bind(this);
+ 
+  }
+
+  componentDidMount() {
+    let query = this.props.location.search
+
+    if (query) {
+      const id = query.substring(5,query.length);
+      this.onSelectId(id);
+    }
   }
 
   commonElements(arr1, arr2) {
@@ -79,6 +93,47 @@ class AllProjects extends React.Component {
     return matchesName || matchesDescription || matchesAuthor || matchesTag;
   }
 
+  hasId(tags, id) {
+    let matching = tags.filter(tag => tag.value === `${id}`);
+    return matching.length > 0;
+  }
+
+  onSelectId(id) {
+    let positions = [];
+    let languages = [];
+    let technologies = [];
+    let topics = [];
+    let difficulty = [];
+    if (this.hasId(this.state.positions, id)) {
+      positions.push(id);
+    }
+    else if (this.hasId(this.state.languages, id)) {
+      languages.push(id);
+    }
+    else if (this.hasId(this.state.technologies, id)) {
+      technologies.push(id);
+    }
+    else if (this.hasId(this.state.topics, id)) {
+      topics.push(id);
+    }
+    else if (this.hasId(this.state.difficulty, id)) {
+      console.log(id)
+      difficulty.push(id);
+    }
+
+    this.setState({selectedLanguages: languages,
+      selectedTechnologies: technologies,
+      selectedPositions: positions,
+      selectedTopics: topics,
+      selectedDifficulty: difficulty});
+
+  }
+
+  onTagClick(e) {
+    let id = e.target.getAttribute('data-id');
+    this.onSelectId(id);
+  }
+
   renderProjects() {
     let projectsObj = store.getState().projects;
     let selectedTags = this.state.selectedPositions.concat(this.state.selectedLanguages).concat(this.state.selectedTechnologies).concat(this.state.selectedTopics).concat(this.state.selectedDifficulty);
@@ -96,7 +151,7 @@ class AllProjects extends React.Component {
         let curProject = projectUtils.convertProject(projects[i]);
         if (this.state.searchValue === "" || this.matchesSearch(curProject.name, curProject.description, curProject.author.firstname + curProject.author.lastname, curProject.tagsRich)) {
           renderedProjects.push(
-            <ProjectCard key={i} projectId={projects[i].id} project={curProject} />
+            <ProjectCard onTagClick={this.onTagClick} key={i} projectId={projects[i].id} project={curProject} />
           );
         }
       }

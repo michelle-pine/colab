@@ -23,22 +23,30 @@ export const projectUtils = {
 
     let backenders = [];
     for (let memberId of project.projectMembers["back-end"]) {
-      backenders.push(state.users[memberId]);
+      let user = state.users[memberId];
+      user.id = memberId;
+      backenders.push(user);
     }
 
     let frontenders = [];
     for (let memberId of project.projectMembers["front-end"]) {
-      frontenders.push(state.users[memberId]);
+      let user = state.users[memberId];
+      user.id = memberId;
+      frontenders.push(user);
     }
 
     let businessMen = [];
     for (let memberId of project.projectMembers["business"]) {
-      businessMen.push(state.users[memberId]);
+      let user = state.users[memberId];
+      user.id = memberId;
+      businessMen.push(user);
     }
 
     let designers = [];
     for (let memberId of project.projectMembers["design"]) {
-      designers.push(state.users[memberId]);
+      let user = state.users[memberId];
+      user.id = memberId;
+      designers.push(user);
     }
 
     projectMembers = {
