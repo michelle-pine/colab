@@ -20,21 +20,33 @@ h4 {
     justify-content: space-between;
   }
 
+  #outer-links-container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $border;
+  }
+
   #inner-links-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid $border;
+    width: 100%;
+    @include h3;
 
+    #delete-link {
+      font-size: $body-size;
+      color:$red;
+      margin-left: auto;
+      order: 2;
+      margin-right: 15px;
+    }
+    
+    #edit-link {
+      font-size: $body-size;
+      margin-left: 10px;
+    }
   }
 
-  #delete-link {
-    font-size: $body-size;
-    color:$red;
-    margin-left: auto;
-    order: 2;
-    margin-right: 15px;
-  }
+
 
   .back-link {
     @include h4;
@@ -55,8 +67,7 @@ h4 {
     @include shadow;
 
     h2 {
-      padding: 20px;
-
+      padding: 20px 0 20px 20px;
     }
 
     .cancel-button {
@@ -77,10 +88,6 @@ h4 {
   #tags-container {
     padding-left: 25px;
   }
-}
-
-#edit-link {
-  font-size: $body-size;
 }
 
 .category-header {

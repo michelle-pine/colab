@@ -228,8 +228,9 @@ class Project extends React.Component {
         </div>
         <div className="row">
           <div className="project-info col-md-6 col-12">
-            <div id="inner-links-container">
+            <div id="outer-links-container">
               <h2>{convertedProject.name} </h2>
+              <div id="inner-links-container"> 
               {convertedProject.creatorId === 999 ? (
                 <Link
                   id="edit-link"
@@ -239,6 +240,7 @@ class Project extends React.Component {
                 </Link>
               ) : null}
               {this.renderDeleteButton()}
+              </div>
             </div>
 
             <div className="project-details">
