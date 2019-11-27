@@ -104,7 +104,7 @@ class CreateProject extends React.Component {
       curProject.description = project.description;
       curProject.githubLink = project.githubLink;
       curProject.prototypeLink = project.prototypeLink;
-      curProject.projectMembers =  Object.assign({}, project.projectMembers);
+      curProject.projectMembers = Object.assign({}, project.projectMembers);
       curProject.tags = project.tags;
 
       curProject.tags.forEach(tagId => {
@@ -238,6 +238,25 @@ class CreateProject extends React.Component {
     });
   }
 
+  setId() {
+    let id;
+    if (this.state.isEditing) {
+      id = this.props.match.params.id;
+    } else {
+      id = 0;
+      while (true) {
+        if (!store.getState().projects[id]) {
+          break;
+        }
+        id++;
+      }
+    }
+    this.setState({newProjectId:id})
+    console.log(id)
+    console.log(this.state.newProjectId)
+
+  }
+
   onSubmitStepThree(e) {
     e.preventDefault();
     let curProject = this.state.newProject;
@@ -254,7 +273,7 @@ class CreateProject extends React.Component {
     let payload;
     let id;
     if (this.state.isEditing) {
-      id = this.props.match.params.id
+      id = this.props.match.params.id;
       payload = { id: id, project: curProject };
       store.dispatch(editProject(payload));
     } else {
@@ -269,8 +288,8 @@ class CreateProject extends React.Component {
       store.dispatch(addProject(payload));
     }
 
-    this.props.history.push(`/projects/${id}`);
-    this.setState({ stepThree: e.target.elements });
+    //this.props.history.push(`/projects/${id}`);
+    this.setState({ stepThree: e.target.elements, newProjectId:id });
   }
 
   onSelectDifficulty(e) {
@@ -302,7 +321,9 @@ class CreateProject extends React.Component {
         <h2>1. General Info:</h2>
         <div className="create-project-inputs">
           <div className="form-group">
-            <label htmlFor="new-project-name">Project Name<i className="required-icon fa fa-asterisk"></i></label>
+            <label htmlFor="new-project-name">
+              Project Name<i className="required-icon fa fa-asterisk"></i>
+            </label>
             <input
               type="text"
               onChange={this.onChangeProjectName}
@@ -420,21 +441,21 @@ class CreateProject extends React.Component {
 
   renderDialog() {
     return (
-      <div id="myModal" className="modal fade" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal">
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
             </div>
-            <div className="modal-body">
+            <div class="modal-body">
               <p>
                 Are you sure you want to cancel? The unsaved changes will be
                 lost.
               </p>
             </div>
-            <div className="modal-footer">
+            <div class="modal-footer">
               <button
                 type="button"
                 className="back-button"
@@ -452,6 +473,42 @@ class CreateProject extends React.Component {
       </div>
     );
   }
+
+  renderSuccessDialog() {
+    return (
+      <div id="successModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                The project was successfully{" "}
+                {this.state.isEditing ? "edited" : "created"}!
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                className="back-button"
+                data-dismiss="modal"
+                onClick={this.handleSuccessDialogClicked}
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  handleSuccessDialogClicked = () => {
+    this.props.history.push(`/projects/${this.state.newProjectId}`);
+  };
 
   renderStepTwo() {
     return (
@@ -745,7 +802,12 @@ class CreateProject extends React.Component {
           </div>
           <div className="form-group form-button-group">
             <div className="grouped-buttons">
-              <button type="submit" className="go-button">
+              <button
+                data-toggle="modal"
+                data-target="#successModal"
+                type="submit"
+                className="go-button"
+              >
                 Finish
               </button>
               <button onClick={this.goBack} className="back-button">
@@ -763,6 +825,7 @@ class CreateProject extends React.Component {
           </div>
         </div>
         {this.renderDialog()}
+        {this.renderSuccessDialog()}
       </form>
     );
   }
