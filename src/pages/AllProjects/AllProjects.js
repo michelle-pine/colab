@@ -23,7 +23,7 @@ class AllProjects extends React.Component {
     });
     this.onTagClick = this.onTagClick.bind(this);
     this.onSelectId = this.onSelectId.bind(this);
-  
+
     this.state = {
       allProjects: store.getState().projects,
       selectedLanguages: [],
@@ -41,7 +41,7 @@ class AllProjects extends React.Component {
     this.clearFilters = this.clearFilters.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onSelectId = this.onSelectId.bind(this);
- 
+
   }
 
   componentDidMount() {
@@ -61,7 +61,7 @@ class AllProjects extends React.Component {
     if (this.props.location !== prevProps.location) {
       console.log("updated");
       let query = this.props.location.search
-      
+
       if (query && query.substring(5,query.length) === "none") {
         this.setState({
           selectedLanguages: [],
@@ -213,7 +213,7 @@ class AllProjects extends React.Component {
             <div className="form-group search">
               <label htmlFor="search-box" className="sr-only">Search</label>
               <i className="search-icon fa fa-search"></i>
-              <input ref={el => this.searchBox = el} onChange={this.onSearch} id="search-box" className="form-control" placeholder="Search Projects..."/>
+              <input ref={el => this.searchBox = el} onChange={this.onSearch} id="search-box" className="form-control" placeholder="Universal Search..."/>
             </div>
             <h2><i className="fa fa-filter"></i>&nbsp; Project Filters <HelpDialog message="Use these filters to narrow down results." /></h2>
             <div className="filter positions">

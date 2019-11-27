@@ -120,7 +120,7 @@ class Project extends React.Component {
     const goBack = this.props.location.search.includes("goback");
     if (goBack) {
       return (
-        <a className="back-link" onClick={this.goBack} >
+        <a className="back-link" onClick={this.goBack}>
           <i className="fa fa-chevron-left"></i> Back
         </a>
       );
@@ -139,27 +139,24 @@ class Project extends React.Component {
   renderDeleteButton() {
     if (this.getProject().creatorId == 999) {
       return (
-        <button
+        <Link
           id="delete-link"
           data-toggle="modal"
           data-target="#myModal"
-          type="button"
           href="#"
-          className="back-button"
         >
           <i class="fa fa-minus-circle"></i> Delete
-        </button>
+        </Link>
       );
     }
     return null;
   }
 
   renderAlternateState(project) {
-    console.log(project)
+    console.log(project);
     if (project.creatorId === 999) {
       return <div>Awaiting Applications</div>;
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -194,10 +191,7 @@ class Project extends React.Component {
 
     return (
       <div id="project-container">
-        <div id="top-links-container">
-          {this.renderBackButton()}
-          {this.renderDeleteButton()}
-        </div>
+        <div id="top-links-container">{this.renderBackButton()}</div>
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -234,19 +228,19 @@ class Project extends React.Component {
         </div>
         <div className="row">
           <div className="project-info col-md-6 col-12">
-            <h2>
-              {convertedProject.name}{" "}
-              <span>
-                {convertedProject.creatorId === 999 ? (
-                  <Link
-                    id="edit-link"
-                    to={`/edit-project/${this.props.match.params.id}`}
-                  >
-                    Edit
-                  </Link>
-                ) : null}
-              </span>
-            </h2>
+            <div id="inner-links-container">
+              <h2>{convertedProject.name} </h2>
+              {convertedProject.creatorId === 999 ? (
+                <Link
+                  id="edit-link"
+                  to={`/edit-project/${this.props.match.params.id}`}
+                >
+                  Edit
+                </Link>
+              ) : null}
+              {this.renderDeleteButton()}
+            </div>
+
             <div className="project-details">
               <p>
                 by{" "}
@@ -279,14 +273,16 @@ class Project extends React.Component {
                   <h4>Business</h4>
                   {businessMembers.map(member => {
                     return (
-                      <p key={member.id}>
-                        <Link to={`/users/${member.id}?goback=true`}>
-                          {member.firstname} {member.lastname}
-                        </Link>
-                      </p>
+                      <Link
+                        key={member.id}
+                        to={`/users/${member.id}?goback=true`}
+                      >
+                        {member.firstname} {member.lastname} <br />
+                      </Link>
                     );
                   })}
-                  {convertedProject.tags.indexOf(4) >= 0 && convertedProject.creatorId !== 999? (
+                  {convertedProject.tags.indexOf(4) >= 0 &&
+                  convertedProject.creatorId !== 999 ? (
                     <button
                       className={
                         this.state.businessButtonText === APPLY
@@ -297,7 +293,9 @@ class Project extends React.Component {
                     >
                       {this.state.businessButtonText}
                     </button>
-                  ) : this.renderAlternateState(convertedProject)}
+                  ) : (
+                    this.renderAlternateState(convertedProject)
+                  )}
                 </div>
               ) : null}
 
@@ -307,14 +305,16 @@ class Project extends React.Component {
                   <h4>Back-end</h4>
                   {backendMembers.map(member => {
                     return (
-                      <p key={member.id}>
-                        <Link to={`/users/${member.id}?goback=true`}>
-                          {member.firstname} {member.lastname}
-                        </Link>
-                      </p>
+                      <Link
+                        key={member.id}
+                        to={`/users/${member.id}?goback=true`}
+                      >
+                        {member.firstname} {member.lastname} <br />
+                      </Link>
                     );
                   })}
-                  {convertedProject.tags.indexOf(2) >= 0 && convertedProject.creatorId !== 999 ? (
+                  {convertedProject.tags.indexOf(2) >= 0 &&
+                  convertedProject.creatorId !== 999 ? (
                     <button
                       className={
                         this.state.backendButtonText === APPLY
@@ -325,7 +325,9 @@ class Project extends React.Component {
                     >
                       {this.state.backendButtonText}
                     </button>
-                  ) : this.renderAlternateState(convertedProject)}
+                  ) : (
+                    this.renderAlternateState(convertedProject)
+                  )}
                 </div>
               ) : null}
 
@@ -335,12 +337,16 @@ class Project extends React.Component {
                   <h4>Front-end</h4>
                   {frontendMembers.map(member => {
                     return (
-                      <Link to={`/users/${member.id}?goback=true`}>
-                        {member.firstname} {member.lastname}
+                      <Link
+                        key={member.id}
+                        to={`/users/${member.id}?goback=true`}
+                      >
+                        {member.firstname} {member.lastname} <br />
                       </Link>
                     );
                   })}
-                  {convertedProject.tags.indexOf(1) >= 0 && convertedProject.creatorId !== 999 ? (
+                  {convertedProject.tags.indexOf(1) >= 0 &&
+                  convertedProject.creatorId !== 999 ? (
                     <button
                       onClick={this.handleApplyFrontendClicked}
                       className={
@@ -351,7 +357,9 @@ class Project extends React.Component {
                     >
                       {this.state.frontendButtonText}
                     </button>
-                  ) : this.renderAlternateState(convertedProject)}
+                  ) : (
+                    this.renderAlternateState(convertedProject)
+                  )}
                 </div>
               ) : null}
 
@@ -361,14 +369,16 @@ class Project extends React.Component {
                   <h4>Design</h4>
                   {designMembers.map(member => {
                     return (
-                      <p key={member.id}>
-                        <Link to={`/users/${member.id}?goback=true`}>
-                          {member.firstname} {member.lastname}
-                        </Link>
-                      </p>
+                      <Link
+                        key={member.id}
+                        to={`/users/${member.id}?goback=true`}
+                      >
+                        {member.firstname} {member.lastname} <br />
+                      </Link>
                     );
                   })}
-                  {convertedProject.tags.indexOf(3) >= 0 && convertedProject.creatorId !== 999 ? (
+                  {convertedProject.tags.indexOf(3) >= 0 &&
+                  convertedProject.creatorId !== 999 ? (
                     <button
                       onClick={this.handleApplyDesignClicked}
                       className={
@@ -379,7 +389,9 @@ class Project extends React.Component {
                     >
                       {this.state.designButtonText}
                     </button>
-                  ) : this.renderAlternateState(convertedProject)}
+                  ) : (
+                    this.renderAlternateState(convertedProject)
+                  )}
                 </div>
               ) : null}
             </div>
@@ -397,7 +409,13 @@ class Project extends React.Component {
                     {category} <HelpDialog message={helpDesc[category]} />
                   </h4>
                   {filteredTags.map(tag => {
-                    return <Tag tag={tag} history={this.props.history} key={tag.id} />;
+                    return (
+                      <Tag
+                        tag={tag}
+                        history={this.props.history}
+                        key={tag.id}
+                      />
+                    );
                   })}
                 </div>
               );

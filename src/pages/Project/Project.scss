@@ -20,14 +20,20 @@ h4 {
     justify-content: space-between;
   }
 
+  #inner-links-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $border;
+
+  }
+
   #delete-link {
-    @include h4;
-    display: block;
-    margin-bottom: 15px;
-    background: lighten($red, 60);
+    font-size: $body-size;
     color:$red;
     margin-left: auto;
     order: 2;
+    margin-right: 15px;
   }
 
   .back-link {
@@ -50,7 +56,7 @@ h4 {
 
     h2 {
       padding: 20px;
-      border-bottom: 1px solid $border;
+
     }
 
     .cancel-button {
@@ -75,7 +81,6 @@ h4 {
 
 #edit-link {
   font-size: $body-size;
-  margin-left: 10px;
 }
 
 .category-header {

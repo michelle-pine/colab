@@ -421,7 +421,7 @@ class CreateProject extends React.Component {
           name="past-experience"
         />
         <label className="form-check-label" htmlFor={`have-${type}`}>
-          I have teammates
+          I have teammates (click to add teammates)
         </label>
         {this.state.showSelect[type] ? select : null}
       </div>
